@@ -4,8 +4,9 @@
 
 :root {
   --app-fg: #f5f3f5;
-  --app-bg: #151515;
+  --app-bg: #24242a;
   --nav-bg: #0000;
+  --nav-item-hover-color: #b75353;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -33,7 +34,7 @@ nav {
   height: 2px;
   bottom: -4px;
   left: 0;
-  background-color: #975750;
+  background-color: var(--nav-item-hover-color);
   transform-origin: bottom right;
   transition: transform 0.25s ease-out;
   border-radius: 25em;  

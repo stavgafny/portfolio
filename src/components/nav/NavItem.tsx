@@ -16,7 +16,7 @@ export function NavItem ({ href, title, icon }: NavItemProps) {
       className='flex items-center gap-4 nav_item_hover'
     >
       {icon}
-      <span className='text-lg'>{title}</span>
+      <span className='text-lg' style={{textShadow: "4px 4px 4px #000"}}>{title}</span>
     </Link>
   )
 }

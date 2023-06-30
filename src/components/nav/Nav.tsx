@@ -8,7 +8,7 @@ import { HamburgerMenu } from './HamburgerMenu';
 
 export default function Nav () {
   return (
-    <nav className='flex items-center justify-end flex-wrap p-3 shadow-md shadow-neutral-800'>
+    <nav className='flex items-center justify-end flex-wrap p-3 shadow-md'>
       <div className='md:hidden'>
         <HamburgerMenu />
       </div>
