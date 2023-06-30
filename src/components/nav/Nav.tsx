@@ -1,20 +1,16 @@
-import React, { ReactNode } from 'react'
-import Link from 'next/link'
-import { IconType } from 'react-icons'
-import { Url } from 'next/dist/shared/lib/router/router'
+import React from 'react'
 import { GoHome, GoPerson } from 'react-icons/go'
 import { BsCode } from 'react-icons/bs'
 import { HiOutlineDocumentText } from 'react-icons/hi'
 import { FiGithub } from 'react-icons/fi'
-import { RxHamburgerMenu } from 'react-icons/rx'
+import {NavItem} from './NavItem';
+import { HamburgerMenu } from './HamburgerMenu';
 
 export default function Nav () {
   return (
-    <nav className='flex items-center justify-end flex-wrap p-3'>
+    <nav className='flex items-center justify-end flex-wrap p-3 shadow-md shadow-neutral-800'>
       <div className='md:hidden'>
-        <button>
-          <RxHamburgerMenu className='scale-150' />
-        </button>
+        <HamburgerMenu />
       </div>
       <div className='w-full flex justify-center gap-x-16 max-md:hidden'>
         <NavItem
@@ -44,28 +40,5 @@ export default function Nav () {
         />
       </div>
     </nav>
-  )
-}
-
-interface NavItemProps {
-  href: Url
-  title: string
-  icon: ReactNode
-}
-
-function NavItem ({ href, title, icon }: NavItemProps) {
-  return (
-    <Link href={href} title={title} className='flex items-center gap-4'>
-      {icon}
-      <span className='text-xl'>{title}</span>
-    </Link>
-  )
-}
-
-function NavShortcut ({ href, title, icon }: NavItemProps) {
-  return (
-    <Link href={href} title={title} className='flex items-center gap-4'>
-      {icon}
-    </Link>
   )
 }
