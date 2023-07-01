@@ -3,6 +3,7 @@ import { GoHome, GoPerson } from 'react-icons/go'
 import { BsCode } from 'react-icons/bs'
 import { HiOutlineDocumentText } from 'react-icons/hi'
 import { FiGithub } from 'react-icons/fi'
+import { LiaCubesSolid } from 'react-icons/lia'
 import {NavItem} from './NavItem';
 import { HamburgerMenu } from './HamburgerMenu';
 
@@ -16,7 +17,7 @@ export default function Nav () {
         <NavItem
           href='/'
           title='Home'
-          icon={<GoHome className='scale-150 text-pink-300' />}
+          icon={<GoHome className='scale-150 text-red-300' />}
         />
         <NavItem
           href='/'
@@ -25,8 +26,13 @@ export default function Nav () {
         />
         <NavItem
           href='/'
+          title='Skills'
+          icon={<LiaCubesSolid className='scale-150 text-orange-300' />}
+        />
+        <NavItem
+          href='/'
           title='Projects'
-          icon={<BsCode className='scale-150 text-yellow-500' />}
+          icon={<BsCode className='scale-150 text-yellow-300' />}
         />
         <NavItem
           href='/'
