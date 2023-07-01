@@ -1,18 +1,14 @@
-'use client'
-
-import { useState } from 'react'
-
-export function HamburgerMenu () {
-  const [opened, setOpened] = useState(false)
-
-  const handleClick = () => {
-    setOpened(!opened)
-  }
-
+export function HamburgerMenu ({
+  opened,
+  onTap
+}: {
+  opened: boolean
+  onTap: Function
+}) {
   return (
     <button
       className={'menu ' + (opened ? 'opened' : '')}
-      onClick={() => handleClick()}
+      onClick={() => onTap()}
       aria-label='Main Menu'
     >
       <svg width='35px' height='35px' viewBox='0 0 100 100'>

@@ -21,6 +21,16 @@ nav {
   background-color: var(--nav-bg);
 }
 
+.nav_content {
+  height: 0px;
+  transition: height 0.3s ease;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.nav_content.nav_opened {
+  height: 350px;
+}
 
 .nav_item_hover {
   position: relative;
@@ -37,7 +47,7 @@ nav {
   background-color: var(--nav-item-hover-color);
   transform-origin: bottom right;
   transition: transform 0.25s ease-out;
-  border-radius: 25em;  
+  border-radius: 25em;
 }
 
 .nav_item_hover:hover:after {
@@ -46,7 +56,6 @@ nav {
   height: 3px;
   border-radius: 25em;
 }
-
 
 .menu {
   background-color: transparent;
@@ -89,4 +98,3 @@ nav {
   stroke-dashoffset: -134;
   stroke-width: 6;
 }
-
