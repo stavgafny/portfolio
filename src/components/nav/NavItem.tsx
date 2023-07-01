@@ -4,19 +4,20 @@ import { ReactNode } from 'react'
 
 interface NavItemProps {
   href: Url
-  title: string
+  name: string,
+  hoverTitle: string
   icon: ReactNode
 }
 
-export function NavItem ({ href, title, icon }: NavItemProps) {
+export function NavItem ({ href, name, hoverTitle, icon }: NavItemProps) {
   return (
     <Link
       href={href}
-      title={title}
+      title={hoverTitle}
       className='flex items-center gap-4 nav_item_hover'
     >
       {icon}
-      <span className='text-lg' style={{textShadow: "4px 4px 4px #000"}}>{title}</span>
+      <span className='text-lg' style={{textShadow: "4px 4px 4px #000"}}>{name}</span>
     </Link>
   )
 }

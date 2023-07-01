@@ -38,32 +38,38 @@ const _NavItems = () => {
     <>
       <NavItem
         href='/'
-        title='Home'
+        name='Home'
+        hoverTitle="Houston, We're Landing"
         icon={<GoHome className='scale-150 text-red-300' />}
       />
       <NavItem
         href='/'
-        title='About'
+        name='About'
+        hoverTitle='The Ego on Me'
         icon={<GoPerson className='scale-150 text-emerald-400' />}
       />
       <NavItem
         href='/'
-        title='Skills'
+        name='Skills'
+        hoverTitle='Skills Unleashed!'
         icon={<LiaCubesSolid className='scale-150 text-orange-300' />}
       />
       <NavItem
         href='/'
-        title='Projects'
+        name='Projects'
+        hoverTitle='Projects Galore!'
         icon={<BsCode className='scale-150 text-yellow-300' />}
       />
       <NavItem
         href='/'
-        title='Resume'
+        name='Resume'
+        hoverTitle='The Journey So Far'
         icon={<HiOutlineDocumentText className='scale-150 text-blue-300' />}
       />
       <NavItem
         href='/'
-        title='Github'
+        name='Github'
+        hoverTitle='Explore my repositories'
         icon={<FiGithub className='scale-150 text-purple-400' />}
       />
     </>
