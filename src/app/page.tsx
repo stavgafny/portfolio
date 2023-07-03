@@ -27,15 +27,15 @@ export default function Home () {
       </div>
 
       <div className='home_titles flex flex-col gap-4'>
-      <Title text='SOFTWARE ENGINEER' hidden={shownTitles} />
-      <Title text='FRONT END DEVELOPER' hidden={shownTitles} />
-      <Title text='APP DEVELOPER' hidden={shownTitles} />
+      <_Title text='SOFTWARE ENGINEER' hidden={shownTitles} />
+      <_Title text='FRONT END DEVELOPER' hidden={shownTitles} />
+      <_Title text='APP DEVELOPER' hidden={shownTitles} />
       </div>
 
 
       <div className={`flex justify-center hidden_code_bg ${shownCodeBg && 'show_code_bg'}`}>
         <Image
-          src='/data/home/code_background.png'
+          src='/assets/home/code_background.png'
           width={650}
           height={500}
           alt='dummy code'
@@ -45,7 +45,7 @@ export default function Home () {
   )
 }
 
-function Title({text, hidden}: {text: string, hidden: boolean}) {
+function _Title({text, hidden}: {text: string, hidden: boolean}) {
   return (
     <h1 className={`hidden_title ${hidden && 'show_title'} flex justify-center text-sm lg:text-2xl`}>{text}</h1>
   );
