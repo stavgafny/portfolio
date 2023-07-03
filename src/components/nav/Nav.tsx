@@ -15,7 +15,7 @@ export default function Nav () {
   const handleClick = () => setOpened(!opened)
 
   return (
-    <nav className='flex w-full items-center flex-wrap p-3 shadow-md'>
+    <nav className='flex w-full items-center flex-wrap p-4 shadow-md'>
       <div className='w-full flex justify-end lg:hidden'>
         <HamburgerMenu opened={opened} onTap={handleClick} />
       </div>
