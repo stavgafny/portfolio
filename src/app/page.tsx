@@ -7,7 +7,11 @@ import sketch from '@/components/home/circle_packing/sketch';
 export default function Home () {
   return (
     <main>
-      <section className='flex justify-center'>
+      <div className='pb-16'></div>
+      <section className='flex justify-center lg:hidden scale-[.4]'>
+        <NextReactP5Wrapper sketch={sketch} />
+      </section>
+      <section className='flex justify-center max-lg:hidden'>
         <NextReactP5Wrapper sketch={sketch} />
       </section>
     </main>

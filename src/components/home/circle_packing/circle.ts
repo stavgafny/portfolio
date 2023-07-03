@@ -3,7 +3,7 @@ import { P5CanvasInstance } from '@p5-wrapper/react'
 
 export default class Circle {
 
-    static readonly groingSize: number = 0.05;
+    static readonly growingSize: number = 0.2;
     static readonly circlePadding: number = 2;
 
     x: number;
@@ -18,7 +18,7 @@ export default class Circle {
     }
 
     grow(): void {
-        this.r = this.r + Circle.groingSize;
+        this.r = this.r + Circle.growingSize;
     }
 
     update(p5: P5CanvasInstance, sketchSize: { x: number, y: number }, circles: Circle[]): void {

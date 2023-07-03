@@ -2,11 +2,11 @@ import { P5CanvasInstance, type Sketch } from '@p5-wrapper/react'
 import Circle from './circle';
 
 
-const _pushedCirclesPerFrame = 1;
+const _pushedCirclesPerFrame = 2;
 const _maxAttemptsPerFrame = 100;
 
 const sketch: Sketch = (p5: P5CanvasInstance) => {
-    const sketchSize = { x: 400, y: 100 };
+    const sketchSize = { x: 950, y: 120 };
     const spots: { x: number, y: number }[] = [];
     const circles: Circle[] = [];
     let image: any;
