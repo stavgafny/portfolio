@@ -99,11 +99,18 @@ nav {
   stroke-width: 6;
 }
 
+.hidden_title::selection {
+  color: #1c1c1e;
+  background: #f394a0;
+  text-shadow: none;
+}
+
+
 .hidden_title {
   opacity: 0;
   filter: blur(10px);
   transform: translateX(-100%);
-  transition: all 2s cubic-bezier(0.19, 1, 0.22, 1);
+  transition: all 3s cubic-bezier(0.19, 1, 0.22, 1);
   color: transparent;
 }
 
@@ -123,18 +130,19 @@ nav {
 }
 
 .hidden_title:nth-child(1) {
+  transition-delay: 1s;
   text-shadow: 
-  0px 0px 0px #ff518e,
-  0px 0px 10px #f85f5f;
+  0px 0px 0px #ff64ed,
+  0px 0px 10px #fa6b91;
 }
 .hidden_title:nth-child(2) {
-  transition-delay: 1s;
+  transition-delay: 2s;
   text-shadow: 
   0px 0px 0px #53a9ff,
   0px 0px 10px #7671fe;
 }
 .hidden_title:nth-child(3) {
-  transition-delay: 2s;
+  transition-delay: 3s;
   text-shadow: 
   0px 0px 0px #ffe554,
   0px 0px 10px #f5d389;
@@ -143,7 +151,7 @@ nav {
 .hidden_code_bg {
   opacity: 0;
   filter: blur(5px);
-  transition: all 1.5s ease-in-out;
+  transition: all 1s ease-in-out;
 }
 
 .hidden_code_bg.show_code_bg {
