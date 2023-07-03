@@ -3,7 +3,7 @@ import { P5CanvasInstance } from '@p5-wrapper/react'
 
 export default class Circle {
 
-    static readonly groingSize: number = 0.25;
+    static readonly groingSize: number = 0.05;
     static readonly circlePadding: number = 2;
 
     x: number;
@@ -33,6 +33,7 @@ export default class Circle {
                 const dist = p5.dist(this.x, this.y, circle.x, circle.y);
                 if (dist - Circle.circlePadding < this.r + circle.r) {
                     this.growing = false;
+                    circle.growing = false;
                     return;
                 }
             }
@@ -44,7 +45,7 @@ export default class Circle {
     display(p5: P5CanvasInstance): void {
         p5.push();
         p5.noFill();
-        p5.strokeWeight(2);
+        p5.strokeWeight(1.5);
         p5.stroke(255);
         p5.translate(this.x, this.y);
         p5.ellipse(0, 0, this.r * 2);
