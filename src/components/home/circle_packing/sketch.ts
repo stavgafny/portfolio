@@ -12,7 +12,7 @@ const sketch: Sketch = (p5: P5CanvasInstance) => {
     let image: any;
 
     p5.preload = () => {
-        image = p5.loadImage("/data/home_circle_packing.png");
+        image = p5.loadImage("/data/home/circle_packing.png");
     }
 
     p5.setup = () => {
