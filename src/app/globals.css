@@ -99,19 +99,19 @@ nav {
   stroke-width: 6;
 }
 
-.hidden_title::selection {
-  color: #1c1c1e;
-  background: #f394a0;
-  text-shadow: none;
-}
-
-
 .hidden_title {
   opacity: 0;
   filter: blur(10px);
   transform: translateX(-100%);
   transition: all 3s cubic-bezier(0.19, 1, 0.22, 1);
   color: transparent;
+  cursor: default;
+}
+
+.hidden_title::selection {
+  color: #1c1c1e;
+  background: #f394a0;
+  text-shadow: none;
 }
 
 .hidden_title.show_title {

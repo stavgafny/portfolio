@@ -67,10 +67,11 @@ const _NavItems = () => {
         icon={<HiOutlineDocumentText className='scale-150 text-blue-300' />}
       />
       <NavItem
-        href='/'
+        href='https://github.com/stavgafny'
         name='Github'
         hoverTitle='Explore my repositories'
         icon={<FiGithub className='scale-150 text-purple-400' />}
+        externalLink={true}
       />
     </>
   )

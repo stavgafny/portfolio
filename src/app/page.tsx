@@ -16,7 +16,7 @@ export default function Home () {
   }, []);
   
   return (
-    <main className='w-full h-full fixed bg-home bg-cover overflow-auto'>
+    <main className='w-full h-full fixed bg-home_bg bg-cover overflow-auto'>
       <div className='h-[120px] mt-10 lg:mb-10'>
         <section className='flex justify-center lg:hidden scale-[.4]'>
           <NextReactP5Wrapper sketch={sketch} />
@@ -33,13 +33,7 @@ export default function Home () {
       </div>
 
 
-      <div className={`flex justify-center hidden_code_bg ${shownCodeBg && 'show_code_bg'}`}>
-        <Image
-          src='/assets/home/code_background.png'
-          width={650}
-          height={500}
-          alt='dummy code'
-        />
+      <div className={`w-full h-1/2 fixed bg-home_code bg-center bg-contain bg-no-repeat hidden_code_bg ${shownCodeBg && 'show_code_bg'}`}>
       </div>
     </main>
   )
