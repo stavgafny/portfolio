@@ -1,14 +1,16 @@
 'use client'
 
 import React, {useState, useEffect} from 'react'
-import Image from 'next/image'
+import { Shizuru } from 'next/font/google';
 import { NextReactP5Wrapper } from '@p5-wrapper/next'
 import sketch from '@/components/home/circle_packing/sketch'
 
+const titlesFont = Shizuru({ subsets: ['latin'], weight: "400" })
+
 export default function Home () {
   
-  const [shownTitles, setShownTitles] = useState(false)
-  const [shownCodeBg, setShownCodeBg] = useState(false)
+  const [shownTitles, setShownTitles] = useState(false);
+  const [shownCodeBg, setShownCodeBg] = useState(false);
 
   useEffect(() => {
     setShownTitles(true);
@@ -16,24 +18,17 @@ export default function Home () {
   }, []);
   
   return (
-    <main className='w-full h-full fixed bg-home_bg bg-cover overflow-auto'>
-      <div className='py-20'>
-        <section className='flex justify-center lg:hidden scale-[.4]'>
-          <NextReactP5Wrapper sketch={sketch} />
-        </section>
-        <section className='flex justify-center max-lg:hidden'>
+    <main className='w-full h-full fixed bg-home_bg bg-cover overflow-auto flex flex-col justify-start pt-24 gap-8 lg:gap-24'>
+      <div className='h-[120px]'>
+        <section className='flex justify-center max-lg:scale-[.4]'>
           <NextReactP5Wrapper sketch={sketch} />
         </section>
       </div>
 
-      <div className='home_titles flex flex-col gap-5'>
+      <div className={`home_titles flex flex-col gap-5 ${titlesFont.className}`}>
       <_Title text='SOFTWARE ENGINEER' hidden={shownTitles} />
       <_Title text='FRONT END DEVELOPER' hidden={shownTitles} />
       <_Title text='APP DEVELOPER' hidden={shownTitles} />
-      </div>
-
-
-      <div className={`w-full h-1/2 fixed bg-home_code bg-center bg-contain bg-no-repeat hidden_code_bg ${shownCodeBg && 'show_code_bg'}`}>
       </div>
     </main>
   )

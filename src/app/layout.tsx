@@ -1,8 +1,8 @@
 import './globals.css';
-import { Inter } from 'next/font/google';
+import { Tilt_Neon } from 'next/font/google';
 import Nav, {navHeight} from '@/components/nav/Nav';
 
-const inter = Inter({ subsets: ['latin'], weight: "400" })
+const defaultFont = Tilt_Neon({ subsets: ['latin'], weight: "400" })
 
 export const metadata = {
   title: 'Create Next App',
@@ -16,7 +16,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={defaultFont.className}>
         <Nav />
         <div className={navHeight} />
         {children}

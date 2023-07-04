@@ -28,20 +28,20 @@ export default function About () {
           </div>
 
           <span>
-            Programming is not just a profession for me; it's a way of
+            Programming is not just a profession for me; it&apos;s a way of
             expressing my creativity and problem-solving skills.
           </span>
 
           <span>
-            When I'm not programming, you'll find me playing the drums.
+            When I&apos;m not programming, you&apos;ll find me playing the drums.
           </span>
 
           <div className='text-sm text-gray-400 flex flex-col'>
             <p>
               Explore my portfolio and get in touch if you have any questions or
-              if you'd like to discuss potential collaborations.
+              if you&apos;d like to discuss potential collaborations.
             </p>
-            <p>Let's create something amazing together!</p>
+            <p>Let&apos;s create something amazing together!</p>
           </div>
         </div>
       </div>
