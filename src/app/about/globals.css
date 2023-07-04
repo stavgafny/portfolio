@@ -1,6 +1,6 @@
 .profile_blob {
   box-shadow: 0 10px 5px 5px rgba(0, 0, 0, 0.5);
-  animation: profile_blob_animation 5s ease-in-out infinite;
+  animation: profile_blob_animation 20s ease-in-out infinite;
   transition: all 1s ease-in-out;
 }
 
@@ -28,5 +28,5 @@
 }
 
 .about_content span {
-  text-shadow: 1px 1px 2px #000;
+  text-shadow: 0px 0px 4px #000;
 }

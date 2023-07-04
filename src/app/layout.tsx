@@ -1,6 +1,6 @@
 import './globals.css';
 import { Inter } from 'next/font/google';
-import Nav from '@/components/nav/Nav';
+import Nav, {navHeight} from '@/components/nav/Nav';
 
 const inter = Inter({ subsets: ['latin'], weight: "400" })
 
@@ -18,6 +18,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <Nav />
+        <div className={navHeight} />
         {children}
       </body>
     </html>

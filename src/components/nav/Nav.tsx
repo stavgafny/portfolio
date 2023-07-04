@@ -9,14 +9,16 @@ import { LiaCubesSolid } from 'react-icons/lia'
 import { NavItem } from './NavItem'
 import { HamburgerMenu } from './HamburgerMenu'
 
+export const navHeight = 'h-16';
+
 export default function Nav () {
   const [opened, setOpened] = useState(false)
 
   const handleClick = () => setOpened(!opened)
 
   return (
-    <nav className='sticky top-0 z-10 flex w-full items-center flex-wrap p-4 shadow-md'>
-      <div className='w-full flex justify-end lg:hidden'>
+    <nav className='absolute top-0 z-10 w-full flex items-center flex-wrap shadow-md'>
+      <div className={`w-full ${navHeight} flex justify-end lg:hidden`}>
         <HamburgerMenu opened={opened} onTap={handleClick} />
       </div>
       <div
@@ -26,7 +28,7 @@ export default function Nav () {
       >
         <_NavItems />
       </div>
-      <div className='w-full flex justify-center gap-x-16 max-lg:hidden'>
+      <div className={`w-full ${navHeight} flex justify-center gap-x-16 max-lg:hidden`}>
         <_NavItems />
       </div>
     </nav>

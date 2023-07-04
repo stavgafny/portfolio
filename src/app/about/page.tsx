@@ -1,6 +1,7 @@
 import ProfileBlob from '@/components/about/profile_blob'
 import './globals.css'
 export default function About () {
+
   return (
     <main>
       <div className='w-full h-full fixed bg-about_bg bg-cover opacity-10 z-[-1]'></div>
@@ -10,18 +11,37 @@ export default function About () {
           <h1 className='lg:pt-10 lg:text-5xl max-lg:text-4xl max-lg:text-center'>
             About Me
           </h1>
+
           <div>
             <span>My name is </span>
             <span className='text-red-300'>Stav Gafny </span>
             <span>and I am from Ramat Hasharon, Israel.</span>
           </div>
+
           <div>
             <span>I am a </span>
             <span className='text-red-300'>Full Stack </span>
             <span>
               developer with a strong passion for building modern websites and
-              apps.
+              applications.
             </span>
+          </div>
+
+          <span>
+            Programming is not just a profession for me; it's a way of
+            expressing my creativity and problem-solving skills.
+          </span>
+
+          <span>
+            When I'm not programming, you'll find me playing the drums.
+          </span>
+
+          <div className='text-sm text-gray-400 flex flex-col'>
+            <p>
+              Explore my portfolio and get in touch if you have any questions or
+              if you'd like to discuss potential collaborations.
+            </p>
+            <p>Let's create something amazing together!</p>
           </div>
         </div>
       </div>
