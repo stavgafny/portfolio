@@ -130,19 +130,19 @@ nav {
 }
 
 .hidden_title:nth-child(1) {
-  transition-delay: 1s;
+  transition-delay: 0s;
   text-shadow: 
   0px 0px 0px #ff64ed,
   0px 0px 10px #fa6b91;
 }
 .hidden_title:nth-child(2) {
-  transition-delay: 2s;
+  transition-delay: .2s;
   text-shadow: 
   0px 0px 0px #53a9ff,
   0px 0px 10px #7671fe;
 }
 .hidden_title:nth-child(3) {
-  transition-delay: 3s;
+  transition-delay: .4s;
   text-shadow: 
   0px 0px 0px #ffe554,
   0px 0px 10px #f5d389;

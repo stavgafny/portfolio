@@ -43,7 +43,7 @@ const _NavItems = () => {
         icon={<GoHome className='scale-150 text-red-300' />}
       />
       <NavItem
-        href='/'
+        href='/about'
         name='About'
         hoverTitle='The Ego on Me'
         icon={<GoPerson className='scale-150 text-emerald-400' />}
@@ -61,7 +61,7 @@ const _NavItems = () => {
         icon={<BsCode className='scale-150 text-yellow-300' />}
       />
       <NavItem
-        href='/'
+        href='/resume'
         name='Resume'
         hoverTitle='The Journey So Far'
         icon={<HiOutlineDocumentText className='scale-150 text-blue-300' />}

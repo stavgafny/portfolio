@@ -10,6 +10,7 @@ module.exports = {
       backgroundImage: {
         'home_bg': "url('/assets/home/background.png')",
         'home_code': "url('/assets/home/code_section.png')",
+        'about_bg': "url('/assets/about/background.jpg')",
       },
     },
   },
