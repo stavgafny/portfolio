@@ -17,3 +17,16 @@
     border-radius: 60% 40% 30% 70%/60% 30% 70% 40%;
   }
 }
+
+.about_content {
+    color: #eee;
+}
+
+.about_content h1 {
+    color: #fff;
+  text-shadow: 5px 5px 5px #000;
+}
+
+.about_content span {
+  text-shadow: 1px 1px 2px #000;
+}
