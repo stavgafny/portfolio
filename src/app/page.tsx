@@ -10,11 +10,9 @@ const titlesFont = Shizuru({ subsets: ['latin'], weight: "400" })
 export default function Home () {
   
   const [shownTitles, setShownTitles] = useState(false);
-  const [shownCodeBg, setShownCodeBg] = useState(false);
 
   useEffect(() => {
     setShownTitles(true);
-    setShownCodeBg(true);
   }, []);
   
   return (
@@ -36,6 +34,8 @@ export default function Home () {
 
 function _Title({text, hidden}: {text: string, hidden: boolean}) {
   return (
-    <h1 className={`hidden_title ${hidden && 'show_title'} flex justify-center text-2xl lg:text-4xl`}>{text}</h1>
+    <div className={`hidden_title ${hidden && 'show_title'}`}>
+      <h1 className={`flex justify-center text-2xl lg:text-4xl`}>{text}</h1>
+    </div>
   );
 }

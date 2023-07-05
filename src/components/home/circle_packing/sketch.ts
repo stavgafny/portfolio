@@ -4,6 +4,7 @@ import Circle from './circle';
 
 const _pushedCirclesPerFrame = 2;
 const _maxAttemptsPerFrame = 100;
+const circlesCap = 1000;
 
 const sketch: Sketch = (p5: P5CanvasInstance) => {
     const sketchSize = { x: 950, y: 120 };
@@ -38,8 +39,8 @@ const sketch: Sketch = (p5: P5CanvasInstance) => {
         Circle.options = {
             colorful: true,
             shape: 'bubbles',
-            growingSize: 0.2,
-            initialRadius: 0.1,
+            growingSize: .2,
+            initialRadius: 1,
             padding: 3,
         } as const;
     }
@@ -80,7 +81,7 @@ const sketch: Sketch = (p5: P5CanvasInstance) => {
                 attempts++;
             }
 
-            if (attempts > _maxAttemptsPerFrame) {
+            if (attempts > _maxAttemptsPerFrame || circles.length > circlesCap) {
                 p5.noLoop();
                 return;
             }

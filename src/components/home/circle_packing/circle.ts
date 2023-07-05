@@ -63,13 +63,24 @@ export default class Circle {
 
     display(p5: P5CanvasInstance): void {
         p5.push();
+        p5.translate(this.x, this.y);
         p5.noFill();
         p5.strokeWeight(1.5);
-        p5.stroke(Circle.options.colorful ? this.c : 255);
-        p5.translate(this.x, this.y);
-        Circle.options.shape === "bubbles" ?
+
+        const shape = () => {
+            Circle.options.shape === "bubbles" ?
             p5.ellipse(0, 0, this.r * 2) :
             p5.line(0, 0, this.r, this.r);
+        }
+
+        p5.push();
+        p5.strokeWeight(3);
+        p5.stroke(0);
+        p5.translate(1, 1);
+        shape();
+        p5.pop();
+        p5.stroke(Circle.options.colorful ? this.c : 255);
+        shape();
         p5.pop();
     }
 
