@@ -6,7 +6,7 @@
   --app-fg: #f5f3f5;
   --app-bg: #24242a;
   --nav-bg: #1f1f24;
-  --nav-item-hover-color: #b75353;
+  --secondary-color: #f394a0;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -19,7 +19,7 @@ body {
 
 *::selection {
   color: #1c1c1e;
-  background: #f394a0;
+  background: var(--secondary-color);
   text-shadow: none;
 }
 
@@ -50,7 +50,7 @@ nav {
   height: 2px;
   bottom: -4px;
   left: 0;
-  background-color: var(--nav-item-hover-color);
+  background-color: var(--secondary-color);
   transform-origin: bottom right;
   transition: transform 0.25s ease-out;
   border-radius: 25em;
@@ -184,4 +184,87 @@ nav {
   62.5% { opacity: 0.5; }
   63% { opacity: 1; }
   100% { opacity: 1; }
+}
+
+.contributions_chart {
+  background-color: #0e1117;
+  border-radius: 6px;
+  width: min-content;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.contributions_chart .chart_title {
+  text-shadow: 1px 1px 4px #aaa;
+}
+
+.contributions_chart .chart_sentence {
+  color: #c55370;
+}
+
+
+.chart {
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-rows: repeat(7, 1fr);
+  gap: 4px;
+}
+
+.contribution {
+  padding: 6px;
+  border-radius: 3px;
+}
+
+.contribution.level0 { background-color: #222229; }
+.contribution.level1 { background-color: #ff3a5e40; }
+.contribution.level2 { background-color: #ff3a5e76; }
+.contribution.level3 { background-color: #ff3a5e92; }
+.contribution.level4 { background-color: #ff3a5ec8; }
+.contribution.level5 { background-color: #ff3a5e; }
+
+
+.contribution_tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.contribution_tooltip .tooltip_text {
+  visibility: hidden;
+  width: 350px;
+  background-color: #717171;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 200%;
+  left: 50%;
+}
+
+.contribution_tooltip .tooltip_text::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #717171 transparent transparent transparent;
+}
+
+.contribution_tooltip .tooltip_text.left { transform: translateX(-5%); }
+.contribution_tooltip .tooltip_text.left::after { left: 5%; }
+
+.contribution_tooltip .tooltip_text.center { transform: translateX(-50%); }
+.contribution_tooltip .tooltip_text.center::after { left: 50%; }
+
+.contribution_tooltip .tooltip_text.right { transform: translateX(-95%); }
+.contribution_tooltip .tooltip_text.right::after { left: 95%; }
+
+
+.contribution_tooltip:hover .tooltip_text {
+  visibility: visible;
 }

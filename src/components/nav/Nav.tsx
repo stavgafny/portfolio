@@ -9,7 +9,7 @@ import { LiaCubesSolid } from 'react-icons/lia'
 import { NavItem } from './NavItem'
 import { HamburgerMenu } from './HamburgerMenu'
 
-export const navHeight = 'h-16';
+export const navHeight = 'h-16 py-5';
 
 export default function Nav () {
   const [opened, setOpened] = useState(false)
