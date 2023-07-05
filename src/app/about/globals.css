@@ -2,6 +2,11 @@
   box-shadow: 0 10px 5px 5px rgba(0, 0, 0, 0.5);
   animation: profile_blob_animation 20s ease-in-out infinite;
   transition: all 1s ease-in-out;
+  opacity: 0;
+}
+
+.profile_blob.shown {
+  opacity: 1;
 }
 
 @keyframes profile_blob_animation {
@@ -19,14 +24,19 @@
 }
 
 .about_content {
-    color: #eee;
+  color: #eee;
 }
 
 .about_content h1 {
-    color: #fff;
+  color: #fff;
   text-shadow: 5px 5px 5px #000;
 }
 
 .about_content span {
   text-shadow: 0px 0px 4px #000;
+}
+
+footer {
+  background-color: #1c1b1f;
+  text-align: center;
 }

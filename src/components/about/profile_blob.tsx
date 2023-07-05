@@ -1,5 +1,5 @@
-export default function ProfileBlob () {
-  const sharedClassName = 'profile_blob bg-about_profile_blob bg-cover'
+export default function ProfileBlob ({shown} :{shown: boolean}) {
+  const sharedClassName = `profile_blob ${shown ? 'shown' : ''} bg-about_profile_blob bg-cover`;
   return (
     <>
       <div className={`${sharedClassName} w-[200px] h-[200px] lg:hidden`}></div>

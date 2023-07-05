@@ -1,12 +1,22 @@
-import ProfileBlob from '@/components/about/profile_blob'
+'use client'
 import './globals.css'
+import { useState, useEffect, ReactNode } from 'react'
+import ProfileBlob from '@/components/about/profile_blob'
+import { VscGithub } from 'react-icons/vsc'
+import { AiFillLinkedin } from 'react-icons/ai'
+
 export default function About () {
+  const [showProfileBlob, setShowProfileBlob] = useState(false)
+
+  useEffect(() => {
+    setShowProfileBlob(true)
+  }, [])
 
   return (
     <main>
-      <div className='w-full h-full fixed bg-about_bg bg-cover opacity-10 z-[-1]'></div>
-      <div className='flex p-8 gap-4 max-lg:items-center max-lg:flex-col'>
-        <ProfileBlob />
+      <div className='w-full h-full fixed bg-about_bg bg-cover opacity-5 z-[-1]'></div>
+      <div className='h-screen flex p-8 gap-6 lg:gap-10 max-lg:items-center max-lg:flex-col'>
+        <ProfileBlob shown={showProfileBlob} />
         <div className='about_content flex flex-col gap-2 text-1xl'>
           <h1 className='lg:pt-10 lg:text-5xl max-lg:text-4xl max-lg:text-center'>
             About Me
@@ -33,7 +43,9 @@ export default function About () {
           </span>
 
           <span>
-            When I&apos;m not programming, you&apos;ll find me playing the drums.
+            When I&apos;m not programming, you&apos;ll find me playing the
+            drums, watching Friends, and playing video games, chilling with some
+            music.
           </span>
 
           <div className='text-sm text-gray-400 flex flex-col'>
@@ -45,6 +57,19 @@ export default function About () {
           </div>
         </div>
       </div>
+      <footer className='py-8 flex flex-col gap-8'>
+        <h1>Find me on</h1>
+        <div className='flex justify-center gap-16 lg:gap-24'>
+        <ContactLinks href='https://www.linkedin.com/in/stav-gafny/' icon={<AiFillLinkedin className='scale-[3]' />} />
+        <ContactLinks href='https://github.com/stavgafny' icon={<VscGithub className='scale-[3]' />} />
+        </div>
+      </footer>
     </main>
   )
+}
+
+function ContactLinks({href, icon}: {href: string, icon: ReactNode}) {
+  return (
+    <a href={href}>{icon}</a>
+  );
 }

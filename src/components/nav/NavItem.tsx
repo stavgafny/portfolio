@@ -7,10 +7,11 @@ interface NavItemProps {
   name: string,
   hoverTitle: string
   icon: ReactNode
+  onClick: Function
   externalLink?: boolean
 }
 
-export function NavItem ({ href, name, hoverTitle, icon, externalLink=false }: NavItemProps) {
+export function NavItem ({ href, name, hoverTitle, icon, onClick, externalLink=false }: NavItemProps) {
   const commonProps = {
     title: hoverTitle,
     className: 'flex items-center gap-4 nav_item_hover'
@@ -26,8 +27,8 @@ export function NavItem ({ href, name, hoverTitle, icon, externalLink=false }: N
     <>
     {
       externalLink ?
-      <a href={href.toString()} {...commonProps}>{content}</a> :
-      <Link href={href} {...commonProps}>{content}</Link>
+      <a href={href.toString()} onClick={() => onClick()} {...commonProps}>{content}</a> :
+      <Link href={href} onClick={() => onClick()} {...commonProps}>{content}</Link>
     }
     </>
   )
