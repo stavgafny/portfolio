@@ -11,12 +11,7 @@ const sketch: Sketch = (p5: P5CanvasInstance) => {
     const circles: Circle[] = [];
     let image: any;
 
-    p5.preload = () => {
-        image = p5.loadImage("/data/home/circle_packing_bitmap.png");
-    }
-
-    p5.setup = () => {
-        p5.createCanvas(sketchSize.x, sketchSize.y);
+    const _loadBitmap = () => {
         image.loadPixels();
         for (let i = 0; i < image.pixels.length; i += 4) {
             const [r, g, b, a] = [image.pixels[i], image.pixels[i + 1], image.pixels[i + 2], image.pixels[i + 3]];
@@ -31,6 +26,22 @@ const sketch: Sketch = (p5: P5CanvasInstance) => {
                 );
             }
         }
+    }
+
+    p5.preload = () => {
+        image = p5.loadImage("/data/home/circle_packing_bitmap.png");
+    }
+
+    p5.setup = () => {
+        p5.createCanvas(sketchSize.x, sketchSize.y);
+        _loadBitmap();
+        Circle.options = {
+            colorful: true,
+            shape: 'bubbles',
+            growingSize: 0.2,
+            initialRadius: 0.1,
+            padding: 3,
+        } as const;
     }
 
     p5.draw = () => {
@@ -52,13 +63,10 @@ const sketch: Sketch = (p5: P5CanvasInstance) => {
         let valid = true;
         for (let i = 0; i < circles.length && valid; i++) {
             const circle = circles[i];
-            const dist = p5.dist(x, y, circle.x, circle.y);
-            if (dist - Circle.circlePadding < circle.r) {
-                valid = false;
-            }
+            valid = !circle.intersects(p5, {x, y});
 
         }
-        return valid ? new Circle(x, y, 1) : null;
+        return valid ? new Circle(x, y) : null;
     }
 
     const pushCircles = (): void => {
