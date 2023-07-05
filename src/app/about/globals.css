@@ -1,3 +1,7 @@
+:root {
+  --chart-padding: 12px;
+}
+
 .profile_blob {
   box-shadow: 0 10px 5px 5px rgba(0, 0, 0, 0.5);
   animation: profile_blob_animation 20s ease-in-out infinite;
@@ -36,7 +40,138 @@
   text-shadow: 0px 0px 4px #000;
 }
 
-footer {
-  background-color: #1c1b1f;
+.contributions_chart {
+  position: relative;
+  max-width: 100%;
+  background-color: #0e1117;
+  border-radius: 6px;
+  padding: var(--chart-padding);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.contributions_chart .loading {
+  margin: 0px auto;
+  width: 100px;
+  height: 100px;
+  stroke: #ff3a5e;
+}
+
+.loading .circular-loader {
+  animation: rotate 2s linear infinite;
+}
+
+.loading .loader-path {
+  fill: none;
+  stroke-width: 1.5px;
+  animation: animate-stroke 1.5s ease-in-out infinite;
+  stroke-linecap: round;
+}
+
+.contributions_chart .chart_title {
+  text-shadow: 1px 1px 4px #aaa;
+}
+
+.contributions_chart .chart {
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-rows: repeat(7, 1fr);
+  gap: 4px;
+}
+
+.contributions_chart::-webkit-scrollbar {
+  background: transparent;
+  height: 5px;
+}
+
+.contributions_chart::-webkit-scrollbar-thumb {
+  background: #b26d75;
+  border-radius: 12px;
+}
+
+
+.contributions_chart::-webkit-scrollbar-track {
+  margin: var(--chart-padding);
+}
+
+
+.contribution_cell {
+  padding: 6px;
+  border-radius: 3px;
+}
+
+.contribution_cell.level0 { background-color: #222229; }
+.contribution_cell.level1 { background-color: #ff3a5e40; }
+.contribution_cell.level2 { background-color: #ff3a5e76; }
+.contribution_cell.level3 { background-color: #ff3a5e92; }
+.contribution_cell.level4 { background-color: #ff3a5ec8; }
+.contribution_cell.level5 { background-color: #ff3a5e; }
+
+
+.contribution_tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.contribution_tooltip .tooltip_text {
+  visibility: hidden;
+  height: 30px;
+  width: max-content;
+  padding: 6px;
+  background-color: #717171;
+  color: #fff;
   text-align: center;
+  border-radius: 6px;
+  position: absolute;
+  z-index: 1;
+  bottom: 200%;
+  left: 50%;
+}
+
+.contribution_tooltip .tooltip_text::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #717171 transparent transparent transparent;
+}
+
+.contribution_tooltip:hover .tooltip_text {
+  visibility: visible;
+}
+
+.contribution_tooltip .tooltip_text.left { transform: translateX(-5%); }
+.contribution_tooltip .tooltip_text.left::after { left: 5%; }
+
+.contribution_tooltip .tooltip_text.center { transform: translateX(-50%); }
+.contribution_tooltip .tooltip_text.center::after { left: 50%; }
+
+.contribution_tooltip .tooltip_text.right { transform: translateX(-95%); }
+.contribution_tooltip .tooltip_text.right::after { left: 95%; }
+
+
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes animate-stroke {
+  0% {
+    stroke-dasharray: 1, 200;
+    stroke-dashoffset: 0;
+  }
+  50% {
+    stroke-dasharray: 89, 200;
+    stroke-dashoffset: -35;
+  }
+  100% {
+    stroke-dasharray: 89, 200;
+    stroke-dashoffset: -124;
+  }
 }
