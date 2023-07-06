@@ -1,5 +1,8 @@
 :root {
-  --chart-padding: 12px;
+  --contributions-chart-padding: 12px;
+  --chart-grid-gap: 12px;
+  --chart-dates-height: 12px;
+  --chart-days-width: 32px;
 }
 
 .profile_blob {
@@ -45,11 +48,27 @@
   max-width: 100%;
   background-color: #0e1117;
   border-radius: 6px;
-  padding: var(--chart-padding);
+  padding: var(--contributions-chart-padding);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   gap: 10px;
+}
+
+.contributions_chart::-webkit-scrollbar {
+  background: transparent;
+  height: 5px;
+  width: 10px;
+}
+
+.contributions_chart::-webkit-scrollbar-thumb {
+  background: #b26d75;
+  border-radius: 12px;
+}
+
+.contributions_chart::-webkit-scrollbar-track {
+  margin-left: calc(var(--contributions-chart-padding) + var(--chart-grid-gap) + var(--chart-days-width));
+  margin-right: var(--contributions-chart-padding);
 }
 
 .contributions_chart .loading {
@@ -74,29 +93,30 @@
   text-shadow: 1px 1px 4px #aaa;
 }
 
-.contributions_chart .dates {
-  position: relative;
+.contributions_chart .chart {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: 1fr auto;
+  grid-gap: var(--chart-grid-gap)
 }
 
-.contributions_chart .chart {
+.chart .dates {
+  grid-column: 2;
+  height: var(--chart-dates-height);
+}
+
+.chart .days {
+  grid-row: 2;
+  width: var(--chart-days-width);
+}
+
+.chart .cells {
+  grid-row: 2;
+  grid-column: 2;
+
   display: grid;
   grid-auto-flow: column;
   grid-template-rows: repeat(7, 1fr);
-}
-
-.contributions_chart::-webkit-scrollbar {
-  background: transparent;
-  height: 5px;
-}
-
-.contributions_chart::-webkit-scrollbar-thumb {
-  background: #b26d75;
-  border-radius: 12px;
-}
-
-
-.contributions_chart::-webkit-scrollbar-track {
-  margin: var(--chart-padding);
 }
 
 

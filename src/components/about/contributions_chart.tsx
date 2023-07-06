@@ -4,10 +4,16 @@ import { useState, useEffect } from 'react'
 import ContributionFormatter from '@/utils/contribution_formatter';
 import { VscGithub } from "react-icons/vsc";
 
+const __debug = true;
+
 const url = 'https://github-contributions-api.jogruber.de/v4/stavgafny?y=last'
 
 
-const _chartCell = {size: 6, gap: 4} as const;
+class ChartCell {
+  static readonly size = 6;
+  static readonly gap = 4;
+  static get step() { return this.size * 2 + this.gap; }
+}
 
 const _tooltipPositionOverflow = {left: 365 * .125, right: 365 * .875};
 
@@ -20,7 +26,11 @@ export default function ContributionsChart () {
   const [chartData, setChartData] = useState<githubApiData | null>(null)
 
   useEffect(() => {
-    fetch(url).then((response: Response) => response.json().then(setChartData))
+    if (__debug) {
+      setChartData(JSON.parse(localStorage.getItem("chart")??"") as githubApiData)
+    } else {
+      fetch(url).then((response: Response) => response.json().then(setChartData))
+    }
   }, [])
 
   if (!chartData) {
@@ -31,30 +41,91 @@ export default function ContributionsChart () {
       </div>
     )
   }
-  
   return (
     <div className='contributions_chart overflow-x-hidden max-lg:overflow-x-auto'>
       <div className='flex sticky left-0 gap-4 items-center justify-between'>
         <span className='chart_title text-xl'>{chartData.total.lastYear} contributions this year</span>
         <a href='https://github.com/stavgafny' className='scale-150'><VscGithub /></a>
       </div>
-      
-      <_Dates dates={chartData.contributions.map(contribution => contribution.date)} />
-      <div className='chart' style={{gap: _chartCell.gap}}>
-        {chartData.contributions.map(({ date, count, level }, index) => (
-          <_Contribution
-            key={date}
-            date={new Date(date)}
-            count={count}
-            level={level}
-            position={index}
-          />
-        ))}
+
+      <div className='chart'>
+        <_Dates dates={chartData.contributions.map(contribution => contribution.date)} />
+        <_Days initialDate={chartData.contributions[0].date} />
+        <div className='cells' style={{gap: ChartCell.gap}}>
+          {chartData.contributions.map(({ date, count, level }, index) => (
+            <_Contribution
+              key={date}
+              date={new Date(date)}
+              count={count}
+              level={level}
+              position={index}
+            />
+          ))}
+        </div>
       </div>
-      
     </div>
   );
 }
+
+function _Contribution ({ date, count, level, position }: { date: Date, count: number, level: number, position: number }) {
+  let tooltipPosition: string = 'center';
+  if (position < _tooltipPositionOverflow.left) tooltipPosition = 'left';
+  if (position > _tooltipPositionOverflow.right) tooltipPosition = 'right';
+return (
+  <div className={`contribution_cell level${level} contribution_tooltip`} style={{padding: ChartCell.size}}>
+    <div className={`tooltip_text text-sm ${tooltipPosition}`}>
+      {ContributionFormatter.format({ date, count })}
+    </div>
+  </div>
+)
+}
+
+
+function _Dates ({ dates }: { dates: string[] }) {
+  const getDateMonthNumber = (date: string) => new Date(date).getMonth()
+  const months = dates
+    .filter((_, index) => index % 7 === 0)
+    .map(date => getDateMonthNumber(date))
+  while (months.at(-1) === months.at(0)) months.pop();
+
+  let pos = -1;
+  let currentMonth: number = -1;
+  return (
+    <div className='dates relative flex items-center'>
+      {months.map(month => {
+        pos++;
+        if (month !== currentMonth) {
+          currentMonth = month
+          return (
+            <span
+              key={month}
+              className='absolute text-xs'
+              style={{ left: `${pos * ChartCell.step}px` }}
+            >
+              {ContributionFormatter.getShortenMonth(currentMonth)}
+            </span>
+          )
+        }
+      })}
+    </div>
+  );
+}
+
+function _Days({initialDate}: {initialDate: string}) {
+  let pos = -1;
+  const dayOfWeek = (day: number) => {
+    pos += 2;
+    return <span style={{top: pos * ChartCell.step}} className='absolute text-xs'>{ContributionFormatter.getShortenDayOfWeek(day % 7)}</span>
+  }
+  const initialDay = new Date(initialDate).getDay() + 1;
+  return <div className='days relative flex flex-col items-center overflow-hidden top-[-2.5px]'>
+    {dayOfWeek(initialDay)}
+    {dayOfWeek(initialDay + 2)}
+    {dayOfWeek(initialDay + 4)}
+  </div>
+}
+
+
 function _LoadingIndicator() {
   return (
     <div className='loading'>
@@ -63,48 +134,4 @@ function _LoadingIndicator() {
       </svg>
     </div>
   );
-}
-
-function _Dates({dates}: {dates: string[]}) {
-  const getDateMonthNumber = (date: string) => new Date(date).getMonth();
-
-
-  const months = dates
-    .filter((_, index) => index % 7 === 0)
-    .map(date => getDateMonthNumber(date));
-  while (months.at(-1) === months.at(0)) months.pop();
-  
-  const step = (_chartCell.size * 2) + _chartCell.gap;
-  let pos = -step;
-  let currentMonth: number = -1;
-  return (
-    <div className='dates absolute pb-2'>
-      {
-        months.map(month => {
-          pos += step;
-          if (month !== currentMonth) {
-            currentMonth = month;
-            return (
-              <span key={month} className='text-xs absolute' style={{ left: `${pos}px` }}>
-                {ContributionFormatter.getShortenMonth(currentMonth)}
-              </span>
-            );
-          }
-        })
-      }
-    </div>
-);
-}
-
-function _Contribution ({ date, count, level, position }: { date: Date, count: number, level: number, position: number }) {
-    let tooltipPosition: string = 'center';
-    if (position < _tooltipPositionOverflow.left) tooltipPosition = 'left';
-    if (position > _tooltipPositionOverflow.right) tooltipPosition = 'right';
-  return (
-    <div className={`contribution_cell level${level} contribution_tooltip`} style={{padding: _chartCell.size}}>
-      <div className={`tooltip_text text-sm ${tooltipPosition}`}>
-        {ContributionFormatter.format({ date, count })}
-      </div>
-    </div>
-  )
 }
