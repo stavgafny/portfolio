@@ -74,11 +74,14 @@
   text-shadow: 1px 1px 4px #aaa;
 }
 
+.contributions_chart .dates {
+  position: relative;
+}
+
 .contributions_chart .chart {
   display: grid;
   grid-auto-flow: column;
   grid-template-rows: repeat(7, 1fr);
-  gap: 4px;
 }
 
 .contributions_chart::-webkit-scrollbar {
@@ -98,7 +101,6 @@
 
 
 .contribution_cell {
-  padding: 6px;
   border-radius: 3px;
 }
 
