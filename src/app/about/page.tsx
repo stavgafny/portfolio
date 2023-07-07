@@ -18,7 +18,7 @@ export default function About () {
     <main>
       <div className='w-full h-full fixed bg-about_bg bg-cover opacity-5 z-[-1]'></div>
       <div className='min-h-screen'>
-        <div className='flex p-8 gap-6 lg:gap-10 max-lg:items-center max-lg:flex-col'>
+        <div className='flex p-12 gap-6 lg:gap-10 max-lg:items-center max-lg:flex-col'>
           <ProfileBlob shown={showProfileBlob} />
           <ContentSection />
         </div>

@@ -1,8 +1,11 @@
 :root {
-  --contributions-chart-padding: 12px;
+  --contributions-chart-padding: 10px;
+  --contributions-chart-border-radius: 1vw;
   --chart-grid-gap: 12px;
-  --chart-dates-height: 12px;
-  --chart-days-width: 32px;
+  --chart-top-padding: 2em;
+  --chart-dates-height: 8px;
+  --chart-days-width: 26px;
+  --chart-tooltip-height: 28px;
 }
 
 .profile_blob {
@@ -46,29 +49,12 @@
 .contributions_chart {
   position: relative;
   max-width: 100%;
-  background-color: #0e1117;
-  border-radius: 6px;
+  background-color: var(--secondary-color);
+  border-radius: var(--contributions-chart-border-radius);
   padding: var(--contributions-chart-padding);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: 10px;
-}
-
-.contributions_chart::-webkit-scrollbar {
-  background: transparent;
-  height: 5px;
-  width: 10px;
-}
-
-.contributions_chart::-webkit-scrollbar-thumb {
-  background: #b26d75;
-  border-radius: 12px;
-}
-
-.contributions_chart::-webkit-scrollbar-track {
-  margin-left: calc(var(--contributions-chart-padding) + var(--chart-grid-gap) + var(--chart-days-width));
-  margin-right: var(--contributions-chart-padding);
 }
 
 .contributions_chart .loading {
@@ -97,7 +83,25 @@
   display: grid;
   grid-template-columns: auto 1fr;
   grid-template-rows: 1fr auto;
-  grid-gap: var(--chart-grid-gap)
+  grid-gap: var(--chart-grid-gap);
+  padding-top: calc(var(--chart-tooltip-height) - var(--chart-grid-gap) + 16px - var(--chart-dates-height));
+  padding-bottom: 8px;
+  padding-right: 8px;
+}
+
+.chart::-webkit-scrollbar {
+  background: transparent;
+  height: 5px;
+  width: 10px;
+}
+
+.chart::-webkit-scrollbar-thumb {
+  background: #b26d75;
+  border-radius: 12px;
+}
+
+.chart::-webkit-scrollbar-track {
+  margin-left: calc(var(--contributions-chart-padding) + var(--chart-days-width));
 }
 
 .chart .dates {
@@ -121,6 +125,8 @@
 
 
 .contribution_cell {
+  width: min-content;
+  height: min-content;
   border-radius: 3px;
 }
 
@@ -139,10 +145,12 @@
 
 .contribution_tooltip .tooltip_text {
   visibility: hidden;
-  height: 30px;
+  height: var(--chart-tooltip-height);
   width: max-content;
+  display: flex;
+  align-items: center;
   padding: 6px;
-  background-color: #717171;
+  background-color: #6f717b;
   color: #fff;
   text-align: center;
   border-radius: 6px;

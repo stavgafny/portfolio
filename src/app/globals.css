@@ -6,7 +6,8 @@
   --app-fg: #f5f3f5;
   --app-bg: #24242a;
   --nav-bg: #1f1f24;
-  --secondary-color: #f394a0;
+  --primary-color: #f394a0;
+  --secondary-color: #0e1117;
 }
 
 :root::-webkit-scrollbar {
@@ -17,7 +18,7 @@
 }
 
 :root::-webkit-scrollbar-thumb {
-  background: var(--secondary-color);
+  background: var(--primary-color);
   border-radius: 12px;
 }
 
@@ -35,7 +36,7 @@ body {
 
 *::selection {
   color: #1c1c1e;
-  background: var(--secondary-color);
+  background: var(--primary-color);
   text-shadow: none;
 }
 
@@ -66,7 +67,7 @@ nav {
   height: 2px;
   bottom: -4px;
   left: 0;
-  background-color: var(--secondary-color);
+  background-color: var(--primary-color);
   transform-origin: bottom right;
   transition: transform 0.25s ease-out;
   border-radius: 25em;
