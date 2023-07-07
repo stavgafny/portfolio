@@ -3,11 +3,7 @@
 import { useState, useEffect } from 'react'
 import ContributionFormatter from '@/utils/contribution_formatter';
 import { VscGithub } from "react-icons/vsc";
-
-
-const contributionsUrl = 'https://github-contributions-api.jogruber.de/v4/stavgafny?y=last'
-
-
+import GithubApiHandler, { GithubContributionsData } from '@/utils/github_api_handler';
 
 class ChartCell {
   static readonly size = 6;
@@ -15,32 +11,36 @@ class ChartCell {
   static get step() { return this.size * 2 + this.gap; }
 }
 
-const _tooltipPositionOverflow = {left: 365 * .125, right: 365 * .875};
-
-interface githubApiData {
-  contributions: { date: string; count: number; level: number }[]
-  total: { lastYear: number }
-}
+const _tooltipPositionChartOverflow = {left: 365 * .125, right: 365 * .875};
 
 export default function ContributionsChart () {
-  const [chartData, setChartData] = useState<githubApiData | null>(null);
+  const [contributionsData, setContributionsData] = useState<GithubContributionsData | null | undefined>(undefined);
 
   useEffect(() => {
-      (async () => {
-        (await fetch(contributionsUrl)).json().then(setChartData);
-      })();
+    GithubApiHandler.getUserYearContributions('stavgafny').then(setContributionsData);
   }, []);
 
-  if (!chartData) {
+  if (!contributionsData) {
     return (
-      <div className='contributions_chart w-[912px] h-[224px]'>
-        <h1 className='text-center'>Loading My GitHub Dominance...</h1>
-        <_LoadingIndicator />
+      <div className='contributions_chart w-[910px] h-[228px]'>
+        <div className='flex h-full flex-col justify-around items-center'>
+          {contributionsData === undefined ? (
+            <>
+              <h1>Loading My GitHub Dominance...</h1>
+              <_LoadingIndicator />
+            </>
+          ) : (
+            <>
+              <h1>Failed to load github chart :(</h1>
+              <p>someoneone must be playing with the wires</p>
+            </>
+          )}
+        </div>
       </div>
     )
   }
 
-  const [contributions, total] = [chartData.contributions, chartData.total.lastYear];
+  const {contributions, total} = contributionsData;
   
   return (
     <div className='contributions_chart'>
@@ -62,8 +62,8 @@ export default function ContributionsChart () {
 
 function _Contribution ({ date, count, level, position }: { date: Date, count: number, level: number, position: number }) {
   let tooltipPosition: string = 'center'
-  if (position < _tooltipPositionOverflow.left) tooltipPosition = 'left'
-  if (position > _tooltipPositionOverflow.right) tooltipPosition = 'right'
+  if (position < _tooltipPositionChartOverflow.left) tooltipPosition = 'left'
+  if (position > _tooltipPositionChartOverflow.right) tooltipPosition = 'right'
   return (
     <div
       className={`contribution_cell level${level} contribution_tooltip`}
@@ -121,7 +121,7 @@ function _Days({initialDate}: {initialDate: string}) {
   </div>
 }
 
-function _Cells ({contributions}: {contributions: githubApiData["contributions"]}) {
+function _Cells ({contributions}: {contributions: GithubContributionsData["contributions"]}) {
   return (
     <div className='cells' style={{ gap: ChartCell.gap }}>
       {contributions.map(({ date, count, level }, index) => (
