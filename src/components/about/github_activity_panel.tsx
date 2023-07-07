@@ -89,10 +89,10 @@ function _PanelHeader ({
         {contributionsTotal} contributions this year
       </span>
       <div className='flex gap-x-4'>
-        <div className={`stargazers px-2 ${stargazersData === null && 'py-1'}`}>
+        <div className={'stargazers px-2 ' + (stargazersData === null && 'py-1')}>
           {
-            stargazersData &&
-          <div className={`repos_dropdown`}>
+            stargazersData && stargazersData.repos.length > 0 &&
+          <div className='repos_dropdown'>
             <div className='repos'>
               {stargazersData?.repos.map(repo => (
                 <>

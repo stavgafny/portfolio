@@ -85,17 +85,15 @@
 }
 
 .stargazers .repos_dropdown {
-  max-height: 125px;
-  width: 0;
-  height: 0;
-  top: 0;
+  max-height: 100px;
+  transform: translateY(-100%);
   opacity: 0;
+  height: auto;
   position: absolute;
   overflow: hidden;
   background-color: inherit;
-  padding: 10px;
-  margin-top: 2px;
-  border-radius: 1em;
+  padding: 0px 10px;
+  border-radius: .75em;
   user-select: text;
 }
 
@@ -114,12 +112,21 @@
 }
 
 .stargazers:hover .repos_dropdown {
+  transform-origin: bottom;
   width: fit-content;
-  height: auto;
-  transform: translateY(-100%);
-  opacity: 1;
   overflow-y: scroll;
-  transition: height .5s, opacity .5s;
+  animation: repos_dropdown_animation .5s forwards cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+@keyframes repos_dropdown_animation {
+  from {
+    opacity: 0;
+    transform: translateY(-100%) scaleY(0);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(-100%) scaleY(1);
+  }
 }
 
 .repos_dropdown .repos {
@@ -208,7 +215,7 @@
   display: flex;
   align-items: center;
   padding: 6px;
-  background-color: #6f717b;
+  background-color: #717d8e;
   color: #fff;
   text-align: center;
   border-radius: 6px;
