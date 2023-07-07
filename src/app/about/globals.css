@@ -1,11 +1,11 @@
 :root {
-  --contributions-chart-padding: 10px;
-  --contributions-chart-border-radius: 1vw;
-  --chart-grid-gap: 12px;
-  --chart-top-padding: 2em;
-  --chart-dates-height: 8px;
-  --chart-days-width: 26px;
-  --chart-tooltip-height: 28px;
+  --github_activity_panel-padding: 10px;
+  --github_activity_panel-border-radius: 1vw;
+  --contributions-chart-grid-gap: 12px;
+  --contributions-chart-top-padding: 2em;
+  --contributions-chart-dates-height: 8px;
+  --contributions-chart-days-width: 26px;
+  --contributions-chart-tooltip-height: 28px;
 }
 
 .profile_blob {
@@ -46,18 +46,18 @@
   text-shadow: 0px 0px 4px #000;
 }
 
-.contributions_chart {
+.github_activity_panel {
   position: relative;
   max-width: 100%;
   background-color: var(--secondary-color);
-  border-radius: var(--contributions-chart-border-radius);
-  padding: var(--contributions-chart-padding);
+  border-radius: var(--github_activity_panel-border-radius);
+  padding: var(--github_activity_panel-padding);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
 
-.contributions_chart .loading {
+.github_activity_panel .loading {
   margin: 0px auto;
   width: 100px;
   height: 100px;
@@ -75,46 +75,50 @@
   stroke-linecap: round;
 }
 
-.contributions_chart .chart_title {
+.github_activity_panel .chart_title {
   text-shadow: 1px 1px 4px #aaa;
 }
 
-.contributions_chart .chart {
+.github_activity_panel .contributions_chart {
   display: grid;
   grid-template-columns: auto 1fr;
   grid-template-rows: 1fr auto;
-  grid-gap: var(--chart-grid-gap);
-  padding-top: calc(var(--chart-tooltip-height) - var(--chart-grid-gap) + 16px - var(--chart-dates-height));
+  grid-gap: var(--contributions-chart-grid-gap);
+  padding-top: calc(
+    var(--contributions-chart-tooltip-height) -
+      var(--contributions-chart-grid-gap) + 16px -
+      var(--contributions-chart-dates-height)
+  );
   padding-bottom: 8px;
   padding-right: 8px;
 }
 
-.chart::-webkit-scrollbar {
+.contributions_chart::-webkit-scrollbar {
   background: transparent;
   height: 5px;
   width: 10px;
 }
 
-.chart::-webkit-scrollbar-thumb {
+.contributions_chart::-webkit-scrollbar-thumb {
   background: #b26d75;
   border-radius: 12px;
 }
 
-.chart::-webkit-scrollbar-track {
-  margin-left: calc(var(--contributions-chart-padding) + var(--chart-days-width));
+.contributions_chart::-webkit-scrollbar-track {
+  margin-left: calc(var(--github_activity_panel-padding) + var(--contributions-chart-days-width));
 }
 
-.chart .dates {
+.contributions_chart .dates {
   grid-column: 2;
-  height: var(--chart-dates-height);
+  height: var(--contributions-chart-dates-height);
 }
 
-.chart .days {
+.contributions_chart .days {
   grid-row: 2;
-  width: var(--chart-days-width);
+  width: var(--contributions-chart-days-width);
 }
 
-.chart .cells {
+.contributions_chart .cells {
   grid-row: 2;
   grid-column: 2;
 
@@ -145,7 +149,7 @@
 
 .contribution_tooltip .tooltip_text {
   visibility: hidden;
-  height: var(--chart-tooltip-height);
+  height: var(--contributions-chart-tooltip-height);
   width: max-content;
   display: flex;
   align-items: center;

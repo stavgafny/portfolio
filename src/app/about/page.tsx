@@ -4,11 +4,11 @@ import './globals.css'
 import { useState, useEffect } from 'react'
 import ProfileBlob from '@/components/about/profile_blob'
 import ContentSection from '@/components/about/content_section'
-import ContributionsChart from '@/components/about/contributions_chart'
+import GithubActivityPanel from '@/components/about/github_activity_panel'
 import ContactFooter from '@/components/about/contact_footer'
 
 export default function About () {
-  const [showProfileBlob, setShowProfileBlob] = useState(false)
+  const [showProfileBlob, setShowProfileBlob] = useState(false);
 
   useEffect(() => {
     setShowProfileBlob(true)
@@ -23,7 +23,7 @@ export default function About () {
           <ContentSection />
         </div>
         <div className='flex lg:px-10 max-lg:justify-center'>
-          <ContributionsChart />
+          <GithubActivityPanel />
         </div>
       </div>
       <ContactFooter />

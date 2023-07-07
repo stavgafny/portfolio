@@ -3,7 +3,12 @@
 import { useState, useEffect } from 'react'
 import ContributionFormatter from '@/utils/contribution_formatter';
 import { VscGithub } from "react-icons/vsc";
-import GithubApiHandler, { GithubContributionsData } from '@/utils/github_api_handler';
+import { AiOutlineStar } from 'react-icons/ai';
+import GithubApiHandler, { GithubContributionsData, GithubStargazersData } from '@/utils/github_api_handler';
+
+
+const githubApiUser = "stavgafny";
+
 
 class ChartCell {
   static readonly size = 6;
@@ -13,16 +18,18 @@ class ChartCell {
 
 const _tooltipPositionChartOverflow = {left: 365 * .125, right: 365 * .875};
 
-export default function ContributionsChart () {
+export default function GithubActivityPanel () {
   const [contributionsData, setContributionsData] = useState<GithubContributionsData | null | undefined>(undefined);
+  const [stargazersData, setStargazersData] = useState<GithubStargazersData | null>(null);
 
   useEffect(() => {
-    GithubApiHandler.getUserYearContributions('stavgafny').then(setContributionsData);
+    GithubApiHandler.getUserYearContributions(githubApiUser).then(setContributionsData);
+    GithubApiHandler.getAllUserStargazers(githubApiUser).then(setStargazersData);
   }, []);
 
   if (!contributionsData) {
     return (
-      <div className='contributions_chart w-[910px] h-[228px]'>
+      <div className='github_activity_panel w-[910px] h-[228px]'>
         <div className='flex h-full flex-col justify-around items-center'>
           {contributionsData === undefined ? (
             <>
@@ -41,16 +48,24 @@ export default function ContributionsChart () {
   }
 
   const {contributions, total} = contributionsData;
-  
+
   return (
-    <div className='contributions_chart'>
+    <div className='github_activity_panel'>
       
       <div className='flex sticky left-0 items-center px-2 justify-between'>
         <span className='chart_title text-xl'>{total} contributions this year</span>
-        <a href='https://github.com/stavgafny' className='scale-150'><VscGithub /></a>
+        <div className='flex gap-x-4'>
+          <div className={`flex items-center gap-2 ${stargazersData === null && 'py-1'} bg-slate-500 px-2 rounded-full`}>
+            <AiOutlineStar className='scale-125'/>
+            {stargazersData && <span>{stargazersData.total}</span>}
+          </div>
+          <div className='flex items-center justify-center'>
+            <a href='https://github.com/stavgafny' className='scale-150'><VscGithub /></a>
+          </div>
+        </div>
       </div>
 
-      <div className='chart overflow-x-hidden max-lg:overflow-x-auto'>
+      <div className='contributions_chart overflow-x-hidden max-lg:overflow-x-auto'>
         <_Dates dates={contributions.map(contribution => contribution.date)} />
         <_Days initialDate={contributions[0].date} />
         <_Cells contributions={contributions} />
