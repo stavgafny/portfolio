@@ -7,7 +7,7 @@ export default class ContributionFormatter {
 
 
     static format({ date, count }: { date: Date; count: number }): string {
-        return `${count} contributions on ${ContributionFormatter.getDayOfWeek(
+        return `${count} contribution${count !== 1 ? 's' : ''} on ${ContributionFormatter.getDayOfWeek(
             date
         )}, ${ContributionFormatter.getMonthNameFromDate(date)}, ${date.getDate()}`;
     }

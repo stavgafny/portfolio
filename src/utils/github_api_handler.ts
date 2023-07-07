@@ -1,14 +1,14 @@
 export interface Contribution { date: string; count: number; level: number }
 
 export interface GithubContributionsData {
-    contributions: Contribution[]
-    total: number //! Not the same as `contributions.length`
+    readonly contributions: Contribution[]
+    readonly total: number //! Not the same as `contributions.length`
 }
 
 
 export interface GithubStargazersData {
-    repos: {name: string, stargazers: number}[]
-    total: number
+    readonly repos: {name: string, stargazers: number}[]
+    readonly total: number
 }
 
 
@@ -41,15 +41,17 @@ export default class GithubApiHandler {
     
             const userRepos = await response.json();
             
-            const stargazersData: GithubStargazersData = {repos: [], total: 0};
+            const repos: GithubStargazersData["repos"] = [];
     
             for (const repo of userRepos) {
                 const name = repo.name;
                 const stargazers = repo.stargazers_count;
-                stargazersData.repos.push({name, stargazers});
+                repos.push({name, stargazers});
             }
-            stargazersData.total = stargazersData.repos.reduce((sum, repo) => sum + repo.stargazers, 0);
-            return stargazersData;
+            return {
+                repos: repos,
+                total: repos.reduce((sum, repo) => sum + repo.stargazers, 0)
+            }
         } catch (e) {
             return null;
         }

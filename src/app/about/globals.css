@@ -75,9 +75,63 @@
   stroke-linecap: round;
 }
 
-.github_activity_panel .chart_title {
-  text-shadow: 1px 1px 4px #aaa;
+.github_activity_panel .stargazers {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #64748b;
+  border-radius: 10em;
+  user-select: none;
 }
+
+.stargazers .repos_dropdown {
+  max-height: 125px;
+  width: 0;
+  height: 0;
+  top: 0;
+  opacity: 0;
+  position: absolute;
+  overflow: hidden;
+  background-color: inherit;
+  padding: 10px;
+  margin-top: 2px;
+  border-radius: 1em;
+  user-select: text;
+}
+
+.stargazers .repos_dropdown::-webkit-scrollbar {
+  background: transparent;
+  width: 6px;
+}
+
+.stargazers .repos_dropdown::-webkit-scrollbar-thumb {
+  background: #b26d75;
+  border-radius: 12px;
+}
+
+.stargazers .repos_dropdown::-webkit-scrollbar-track {
+  margin: .5em;
+}
+
+.stargazers:hover .repos_dropdown {
+  width: fit-content;
+  height: auto;
+  transform: translateY(-100%);
+  opacity: 1;
+  overflow-y: scroll;
+  transition: height .5s, opacity .5s;
+}
+
+.repos_dropdown .repos {
+  height: max-content;
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  align-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 0px 6px;
+}
+
 
 .github_activity_panel .contributions_chart {
   display: grid;
