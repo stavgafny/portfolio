@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import ContributionFormatter from '@/utils/contribution_formatter'
 import { VscGithub } from 'react-icons/vsc'
 import { AiOutlineStar } from 'react-icons/ai'
@@ -9,7 +9,6 @@ import GithubApiHandler, {
   GithubStargazersData
 } from '@/utils/github_api_handler'
 
-const githubApiUser = 'stavgafny'
 
 class ChartCell {
   static readonly size = 6
@@ -29,10 +28,8 @@ export default function GithubActivityPanel () {
     useState<GithubStargazersData | null>(null)
 
   useEffect(() => {
-    GithubApiHandler.getUserYearContributions(githubApiUser).then(
-      setContributionsData
-    )
-    GithubApiHandler.getAllUserStargazers(githubApiUser).then(setStargazersData)
+    GithubApiHandler.getUserYearContributions().then(setContributionsData)
+    GithubApiHandler.getAllUserStargazers().then(setStargazersData)
   }, [])
 
   if (!contributionsData) {
@@ -95,11 +92,11 @@ function _PanelHeader ({
           <div className='repos_dropdown'>
             <div className='repos'>
               {stargazersData?.repos.map(repo => (
-                <>
+                <React.Fragment key={repo.name}>
                   <span>{repo.name}</span>
                   <AiOutlineStar />
                   <span>{repo.stargazers}</span>
-                </>
+                </React.Fragment>
               ))}
             </div>
           </div>

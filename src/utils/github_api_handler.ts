@@ -1,3 +1,5 @@
+import CacheHandler from "./cache_handler";
+
 export interface Contribution { date: string; count: number; level: number }
 
 export interface GithubContributionsData {
@@ -11,49 +13,24 @@ export interface GithubStargazersData {
     readonly total: number
 }
 
-
 export default class GithubApiHandler {
-    private static readonly cacheExpirationMinutes = 1 * (60 * 1000);
-    private static readonly $cacheExpirationName = "$github-handler-cache-expiration";
-    private static readonly $contributionsCacheName = "$contributions-cache";
-    private static readonly $stargazersCacheName = "$stargazers-cache";
+    private static readonly githubUsername = "stavgafny";
+    private static readonly contributionsCacheExpirationDate = 6 * 3600000;
+    private static readonly stargazersCacheExpirationDate = 4 * 3600000;
 
-    private static get isCacheExpired(): boolean {
-        try {
-            const cacheDateData = localStorage.getItem(this.$cacheExpirationName);
-            if (cacheDateData === null) throw null;
-            const cacheDate = new Date(parseInt(cacheDateData));
-            const currentDate = new Date();
-            return currentDate >= cacheDate;
-        } catch {
-            return true;
-        }
-    }
+    private static readonly $contributionsData = new CacheHandler<GithubContributionsData>({
+        cacheName: "$contributions-cache",
+        expirationDuration: GithubApiHandler.contributionsCacheExpirationDate,
+        segmentBuilder: async () => GithubApiHandler.fetchUserYearContributions(GithubApiHandler.githubUsername)
+    });
 
-    private static loadCache<CacheDataType>(cacheName: string): CacheDataType | null {
-        const cache = localStorage.getItem(cacheName);
-        if (cache === null) return null;
-        try {
-            return JSON.parse(cache) as CacheDataType;
-        } catch {
-            return null;
-        }
-    };
+    private static readonly $stargazersData = new CacheHandler<GithubStargazersData>({
+        cacheName: "$stargazers-cache",
+        expirationDuration: GithubApiHandler.stargazersCacheExpirationDate,
+        segmentBuilder: async () => GithubApiHandler.fetchAllUserStargazers(GithubApiHandler.githubUsername)
+    });
 
-    private static storeCache<CacheDataType>(cacheName: string, data: CacheDataType): boolean {
-        console.info(`storing ${cacheName}`);
-        try {
-            localStorage.setItem(cacheName, JSON.stringify(data));
-            const currentDate = new Date();
-            const cacheDate = new Date(currentDate.getTime() + this.cacheExpirationMinutes);
-            localStorage.setItem(this.$cacheExpirationName, cacheDate.getTime().toString());
-            return true;
-        } catch {
-            return false;
-        }
-    }
-
-    static async fetchUserYearContributions(username: string): Promise<GithubContributionsData | null> {
+    private static async fetchUserYearContributions(username: string): Promise<GithubContributionsData | null> {
         try {
             const url = `https://github-contributions-api.jogruber.de/v4/${username}?y=last`;
 
@@ -73,18 +50,7 @@ export default class GithubApiHandler {
         }
     }
 
-    static async getUserYearContributions(username: string): Promise<GithubContributionsData | null> {
-        if (this.isCacheExpired) {
-            const data = await this.fetchUserYearContributions(username);
-            if (data) {
-                this.storeCache<GithubContributionsData>(this.$contributionsCacheName, data);
-                return data;
-            }
-        }
-        return this.loadCache<GithubContributionsData>(this.$contributionsCacheName);
-    }
-
-    static async fetchAllUserStargazers(username: string): Promise<GithubStargazersData | null> {
+    private static async fetchAllUserStargazers(username: string): Promise<GithubStargazersData | null> {
         const url = `https://api.github.com/users/${username}/repos`;
 
         try {
@@ -110,14 +76,7 @@ export default class GithubApiHandler {
         }
     }
 
-    static async getAllUserStargazers(username: string): Promise<GithubStargazersData | null> {
-        if (this.isCacheExpired) {
-            const data = await this.fetchAllUserStargazers(username);
-            if (data) {
-                this.storeCache<GithubStargazersData>(this.$stargazersCacheName, data);
-                return data;
-            }
-        }
-        return this.loadCache<GithubStargazersData>(this.$stargazersCacheName);
-    }
+    static getUserYearContributions = async (): Promise<GithubContributionsData | null> => await this.$contributionsData.getData();
+    static getAllUserStargazers = async (): Promise<GithubStargazersData | null> => await this.$stargazersData.getData();
+    
 }
