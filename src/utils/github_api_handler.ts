@@ -1,4 +1,4 @@
-import CacheHandler from "./cache_handler";
+import CacheWrapper from "./cache_wrapper";
 
 export interface Contribution { date: string; count: number; level: number }
 
@@ -18,13 +18,13 @@ export default class GithubApiHandler {
     private static readonly contributionsCacheExpirationDate = 6 * 3600000;
     private static readonly stargazersCacheExpirationDate = 4 * 3600000;
 
-    private static readonly $contributionsData = new CacheHandler<GithubContributionsData>({
+    private static readonly $contributionsData = new CacheWrapper<GithubContributionsData>({
         cacheName: "$contributions-cache",
         expirationDuration: GithubApiHandler.contributionsCacheExpirationDate,
         segmentBuilder: async () => GithubApiHandler.fetchUserYearContributions(GithubApiHandler.githubUsername)
     });
 
-    private static readonly $stargazersData = new CacheHandler<GithubStargazersData>({
+    private static readonly $stargazersData = new CacheWrapper<GithubStargazersData>({
         cacheName: "$stargazers-cache",
         expirationDuration: GithubApiHandler.stargazersCacheExpirationDate,
         segmentBuilder: async () => GithubApiHandler.fetchAllUserStargazers(GithubApiHandler.githubUsername)

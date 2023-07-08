@@ -7,9 +7,8 @@ export default class ContributionFormatter {
 
 
     static format({ date, count }: { date: Date; count: number }): string {
-        return `${count} contribution${count !== 1 ? 's' : ''} on ${ContributionFormatter.getDayOfWeek(
-            date
-        )}, ${ContributionFormatter.getMonthNameFromDate(date)}, ${date.getDate()}`;
+        const dateFormat = `on ${ContributionFormatter.getDayOfWeek(date)}, ${ContributionFormatter.getMonthNameFromDate(date)}, ${date.getDate()}`;
+        return `${count > 0 ? count : 'No'} contribution${count !== 1 ? 's' : ''} ${dateFormat}`;
     }
 
     static getShortenMonth(monthNumber: number) {

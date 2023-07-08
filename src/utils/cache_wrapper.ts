@@ -5,7 +5,8 @@ export interface CacheSegment<DataType> {
     expirationDate: number;
 }
 
-export default class CacheHandler<DataType> {
+/// Useful for storing data that doesn't need to be loaded or fetched every single time
+export default class CacheWrapper<DataType> {
     private static readonly $storageHandler = {
         get: (key: string) => localStorage.getItem(key),
         set: (key: string, value: string) => localStorage.setItem(key, value),
@@ -31,7 +32,7 @@ export default class CacheHandler<DataType> {
     private getSegment(): CacheSegment<DataType> | null {
         try {
             const { data, expirationDate }: CacheSegment<DataType>
-                = JSON.parse(CacheHandler.$storageHandler.get(this.cacheName) ?? "");
+                = JSON.parse(CacheWrapper.$storageHandler.get(this.cacheName) ?? "");
             if (!data || !expirationDate) throw null;
             return { data, expirationDate };
         } catch {
@@ -45,13 +46,13 @@ export default class CacheHandler<DataType> {
             data: data,
             expirationDate: new Date().setTime(Date.now() + this.expirationDuration),
         };
-        CacheHandler.$storageHandler.set(this.cacheName, JSON.stringify(segment));
+        CacheWrapper.$storageHandler.set(this.cacheName, JSON.stringify(segment));
         this.logCache();
     }
 
     async getData(): Promise<DataType | null> {
         const segment = this.getSegment();
-        if (segment && !CacheHandler.isExpired(segment.expirationDate)) {
+        if (segment && !CacheWrapper.isExpired(segment.expirationDate)) {
             return segment.data;
         }
         try {
