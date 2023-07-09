@@ -93,7 +93,13 @@ function _PanelHeader ({
             <div className='repos'>
               {stargazersData?.repos.map(repo => (
                 <React.Fragment key={repo.name}>
-                  <a href={GithubApiHandler.getRepoLink(repo.name)} className='repo_name_link'>{repo.name}</a>
+                  <a
+                      href={GithubApiHandler.getRepoLink(repo.name)}
+                      target='_blank'
+                      className='repo_name_link'
+                    >
+                      {repo.name}
+                    </a>
                   <AiOutlineStar />
                   <span>{repo.stargazers}</span>
                 </React.Fragment>

@@ -21,7 +21,7 @@ export default function ContentSection () {
       </div>
 
       <span>
-        Programming is not just a profession for me; it&apos;s a way of
+        Programming is not just a profession for me, it&apos;s a way of
         expressing my creativity and problem-solving skills.
       </span>
 

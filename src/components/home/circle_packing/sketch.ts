@@ -42,6 +42,7 @@ const sketch: Sketch = (p5: P5CanvasInstance) => {
             growingSize: .2,
             initialRadius: 1,
             padding: 3,
+            maxGrow: Infinity
         } as const;
     }
 

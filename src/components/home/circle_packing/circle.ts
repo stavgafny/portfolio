@@ -12,6 +12,7 @@ export interface CircleOptions {
     readonly growingSize: number
     readonly initialRadius: number
     readonly padding: number
+    readonly maxGrow: number
 }
 
 
@@ -38,6 +39,10 @@ export default class Circle {
 
     grow(): void {
         this.r = this.r + Circle.options.growingSize;
+        if (this.r > Circle.options.maxGrow) {
+            this.r = Circle.options.maxGrow;
+            this.growing = false;
+        }
     }
 
     update(p5: P5CanvasInstance, sketchSize: { x: number, y: number }, circles: Circle[]): void {
@@ -97,6 +102,6 @@ export default class Circle {
 
     intersects(p5: P5CanvasInstance, position: { x: number, y: number }): boolean {
         const dist = p5.dist(this.x, this.y, position.x, position.y);
-        return dist - Circle.options.padding < this.r;
+        return dist - Circle.options.padding - Circle.options.initialRadius < this.r;
     }
 }
