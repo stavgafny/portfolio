@@ -20,7 +20,7 @@ class ChartCell {
 
 const _tooltipPositionChartOverflow = { left: 365 * 0.125, right: 365 * 0.875 }
 
-export default function GithubActivityPanel () {
+export default function GithubActivityPanel ({shown} :{shown: boolean}) {
   const [contributionsData, setContributionsData] = useState<
     GithubContributionsData | null | undefined
   >(undefined)
@@ -31,10 +31,12 @@ export default function GithubActivityPanel () {
     GithubApiHandler.getUserYearContributions().then(setContributionsData)
     GithubApiHandler.getAllUserStargazersRepos().then(setStargazersData)
   }, [])
+  
+  const className = 'github_activity_panel self-start ' + (shown ? 'show' : '');
 
   if (!contributionsData) {
     return (
-      <div className='github_activity_panel w-[910px] h-[228px]'>
+      <div className={className + ' w-[910px] h-[228px]'}>
         <div className='flex h-full flex-col justify-around items-center'>
           {contributionsData === undefined ? (
             <>
@@ -55,7 +57,7 @@ export default function GithubActivityPanel () {
   const { contributions, total } = contributionsData
 
   return (
-    <div className='github_activity_panel'>
+    <div className={className}>
       <_PanelHeader
         contributionsTotal={total}
         stargazersData={stargazersData}

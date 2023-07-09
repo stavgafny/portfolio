@@ -1,6 +1,9 @@
-export default function ContentSection () {
+'use client'
+
+
+export default function ContentSection ({shown} :{shown: boolean}) {
   return (
-    <div className='about_content flex flex-col gap-2 text-1xl'>
+    <div className={'about_content flex flex-col gap-2 text-1xl ' + (shown ? 'show' : '')}>
       <h1 className='lg:pt-10 lg:text-5xl max-lg:text-4xl max-lg:text-center'>
         About Me
       </h1>

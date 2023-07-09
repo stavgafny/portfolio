@@ -8,22 +8,22 @@ import GithubActivityPanel from '@/components/about/github_activity_panel'
 import ContactFooter from '@/components/about/contact_footer'
 
 export default function About () {
-  const [showProfileBlob, setShowProfileBlob] = useState(false);
+  const [transitionIn, setTransitionIn] = useState(false);
 
   useEffect(() => {
-    setShowProfileBlob(true)
+    setTransitionIn(true)
   }, [])
 
   return (
     <main>
       <div className='w-full h-full fixed bg-about_bg bg-cover opacity-5 z-[-1]'></div>
-      <div className='min-h-screen'>
-        <div className='flex p-12 gap-6 lg:gap-10 max-lg:items-center max-lg:flex-col'>
-          <ProfileBlob shown={showProfileBlob} />
-          <ContentSection />
+      <div className='min-h-screen overflow-hidden'>
+        <div className='flex px-16 py-12 gap-6 lg:gap-10 max-lg:items-center max-lg:flex-col'>
+          <ProfileBlob shown={transitionIn} />
+          <ContentSection shown={transitionIn} />
         </div>
-        <div className='flex lg:px-10 max-lg:justify-center'>
-          <GithubActivityPanel />
+        <div className='flex lg:px-10 max-lg:justify-center flex-wrap'>
+          <GithubActivityPanel shown={transitionIn} />
         </div>
       </div>
       <ContactFooter />
