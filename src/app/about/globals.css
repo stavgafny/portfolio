@@ -92,7 +92,7 @@
   position: absolute;
   overflow: hidden;
   background-color: inherit;
-  padding: 0px 10px;
+  padding: 2px 10px;
   border-radius: .75em;
   user-select: text;
 }
@@ -139,6 +139,15 @@
   gap: 0px 6px;
 }
 
+.repos .repo_name_link {
+    display: inline-block;
+    position: relative;
+}
+
+
+.repos .repo_name_link:hover {
+    color: #fd5a6e;
+}
 
 .github_activity_panel .contributions_chart {
   display: grid;

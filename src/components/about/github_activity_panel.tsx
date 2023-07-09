@@ -29,7 +29,7 @@ export default function GithubActivityPanel () {
 
   useEffect(() => {
     GithubApiHandler.getUserYearContributions().then(setContributionsData)
-    GithubApiHandler.getAllUserStargazers().then(setStargazersData)
+    GithubApiHandler.getAllUserStargazersRepos().then(setStargazersData)
   }, [])
 
   if (!contributionsData) {
@@ -93,7 +93,7 @@ function _PanelHeader ({
             <div className='repos'>
               {stargazersData?.repos.map(repo => (
                 <React.Fragment key={repo.name}>
-                  <span>{repo.name}</span>
+                  <a href={GithubApiHandler.getRepoLink(repo.name)} className='repo_name_link'>{repo.name}</a>
                   <AiOutlineStar />
                   <span>{repo.stargazers}</span>
                 </React.Fragment>

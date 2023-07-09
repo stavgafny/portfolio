@@ -21,16 +21,26 @@ export default class GithubApiHandler {
     private static readonly $contributionsData = new CacheWrapper<GithubContributionsData>({
         cacheName: "$contributions-cache",
         expirationDuration: GithubApiHandler.contributionsCacheExpirationDate,
-        segmentBuilder: async () => GithubApiHandler.fetchUserYearContributions(GithubApiHandler.githubUsername)
+        segmentBuilder: async () => _GithubApiMethods.fetchUserYearContributions(GithubApiHandler.githubUsername)
     });
 
     private static readonly $stargazersData = new CacheWrapper<GithubStargazersData>({
         cacheName: "$stargazers-cache",
         expirationDuration: GithubApiHandler.stargazersCacheExpirationDate,
-        segmentBuilder: async () => GithubApiHandler.fetchAllUserStargazers(GithubApiHandler.githubUsername)
+        segmentBuilder: async () => _GithubApiMethods.fetchAllUserStargazersRepos(GithubApiHandler.githubUsername)
     });
 
-    private static async fetchUserYearContributions(username: string): Promise<GithubContributionsData | null> {
+
+    static getUserYearContributions = async (): Promise<GithubContributionsData | null> => await this.$contributionsData.getData();
+    static getAllUserStargazersRepos = async (): Promise<GithubStargazersData | null> => await this.$stargazersData.getData();
+
+    static getRepoLink = (repo: string) => `https://github.com/stavgafny/${repo}`;
+}
+
+
+
+class _GithubApiMethods {
+    static async fetchUserYearContributions(username: string): Promise<GithubContributionsData | null> {
         try {
             const url = `https://github-contributions-api.jogruber.de/v4/${username}?y=last`;
 
@@ -50,7 +60,7 @@ export default class GithubApiHandler {
         }
     }
 
-    private static async fetchAllUserStargazers(username: string): Promise<GithubStargazersData | null> {
+    static async fetchAllUserStargazersRepos(username: string): Promise<GithubStargazersData | null> {
         const url = `https://api.github.com/users/${username}/repos`;
 
         try {
@@ -65,18 +75,16 @@ export default class GithubApiHandler {
             for (const repo of userRepos) {
                 const name = repo.name;
                 const stargazers = repo.stargazers_count;
-                repos.push({ name, stargazers });
+                if (stargazers > 0) {
+                    repos.push({ name, stargazers });
+                }
             }
             return {
-                repos: repos,
+                repos: repos.sort((a, b) => b.stargazers - a.stargazers),
                 total: repos.reduce((sum, repo) => sum + repo.stargazers, 0)
             }
         } catch {
             return null;
         }
     }
-
-    static getUserYearContributions = async (): Promise<GithubContributionsData | null> => await this.$contributionsData.getData();
-    static getAllUserStargazers = async (): Promise<GithubStargazersData | null> => await this.$stargazersData.getData();
-    
 }
