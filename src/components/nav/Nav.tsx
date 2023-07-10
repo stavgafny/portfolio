@@ -9,7 +9,9 @@ import { LiaCubesSolid } from 'react-icons/lia'
 import { NavItem } from './NavItem'
 import { HamburgerMenu } from './HamburgerMenu'
 
-export const navHeight = 'h-16 py-5';
+import './Nav.css';
+
+export const navHeight = 'h-16 py-5'
 
 export default function Nav () {
   const [opened, setOpened] = useState(false)
@@ -17,25 +19,30 @@ export default function Nav () {
   const handleClick = () => setOpened(!opened)
 
   return (
-    <nav className='fixed top-0 z-10 w-full flex items-center flex-wrap shadow-md'>
-      <div className={`w-full ${navHeight} flex justify-end lg:hidden`}>
-        <HamburgerMenu opened={opened} onTap={handleClick} />
-      </div>
-      <div
-        className={`nav_content justify-around items-center ${
-          opened ? 'nav_opened' : ''
-        } w-full lg:hidden`}
-      >
-        <_NavItems onItemClick={() => setOpened(false)} />
-      </div>
-      <div className={`w-full ${navHeight} flex justify-center gap-x-16 max-lg:hidden`}>
-        <_NavItems onItemClick={() => {}} />
-      </div>
-    </nav>
+    <>
+      <nav className='fixed top-0 z-50 w-full flex items-center flex-wrap shadow-md'>
+        <div className={`w-full ${navHeight} flex justify-end lg:hidden`}>
+          <HamburgerMenu opened={opened} onTap={handleClick} />
+        </div>
+        <div
+          className={`nav_content justify-around items-center ${
+            opened ? 'nav_opened' : ''
+          } w-full lg:hidden`}
+        >
+          <_NavItems onItemClick={() => setOpened(false)} />
+        </div>
+        <div
+          className={`w-full ${navHeight} flex justify-center gap-x-16 max-lg:hidden`}
+        >
+          <_NavItems onItemClick={() => {}} />
+        </div>
+      </nav>
+      <div className={'fixed w-screen h-screen lg:hidden transition-all ease-in duration-200 ' + (opened ? 'z-40 bg-black/70' : '')} />
+    </>
   )
 }
 
-const _NavItems = ({onItemClick}: {onItemClick: Function}) => {
+const _NavItems = ({ onItemClick }: { onItemClick: Function }) => {
   return (
     <>
       <NavItem
@@ -66,7 +73,7 @@ const _NavItems = ({onItemClick}: {onItemClick: Function}) => {
         icon={<BsCode className='scale-150 text-yellow-300' />}
         onClick={onItemClick}
       />
-      <NavItem
+      {/* <NavItem
         href='/resume'
         name='Resume'
         hoverTitle='The Journey So Far'
@@ -80,7 +87,7 @@ const _NavItems = ({onItemClick}: {onItemClick: Function}) => {
         icon={<FiGithub className='scale-150 text-purple-400' />}
         onClick={onItemClick}
         externalLink={true}
-      />
+      /> */}
     </>
   )
 }
