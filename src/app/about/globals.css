@@ -10,33 +10,6 @@
   --contributions-chart-tooltip-height: 28px;
 }
 
-.profile_blob {
-  box-shadow: 0 10px 5px 5px rgba(0, 0, 0, 0.5);
-  animation: profile_blob_animation 20s ease-in-out infinite;
-  transform: translateX(-100%);
-  opacity: 0;
-  transition: var(--transition-in);
-}
-
-.profile_blob.shown {
-  transform: translateX(0%);
-  opacity: 1;
-}
-
-@keyframes profile_blob_animation {
-  0% {
-    border-radius: 60% 40% 30% 70%/60% 30% 70% 40%;
-  }
-
-  50% {
-    border-radius: 30% 60% 70% 40%/50% 60% 30% 60%;
-  }
-
-  100% {
-    border-radius: 60% 40% 30% 70%/60% 30% 70% 40%;
-  }
-}
-
 .about_content {
   color: #eee;
   transform: translateX(50%);
@@ -319,42 +292,4 @@
 .aa {
   width: 500px;
   height: 500px;
-}
-
-.email_tooltip {
-  position: relative;
-  display: inline-block;
-}
-
-.email_tooltip .tooltip_text {
-  visibility: hidden;
-  width: 140px;
-  background-color: #555;
-  color: #fff;
-  text-align: center;
-  border-radius: 6px;
-  padding: 5px;
-  position: absolute;
-  z-index: 1;
-  bottom: 130%;
-  left: 50%;
-  margin-left: -75px;
-  opacity: 0;
-  transition: opacity 0.3s;
-}
-
-.email_tooltip .tooltip_text::after {
-  content: "";
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  margin-left: -5px;
-  border-width: 5px;
-  border-style: solid;
-  border-color: #555 transparent transparent transparent;
-}
-
-.email_tooltip:hover .tooltip_text {
-  visibility: visible;
-  opacity: 1;
 }

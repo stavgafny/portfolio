@@ -1,0 +1,102 @@
+.email_tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.email_tooltip .tooltip_text {
+  visibility: hidden;
+  width: 140px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px;
+  position: absolute;
+  z-index: 1;
+  bottom: 130%;
+  left: 50%;
+  margin-left: -75px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.email_tooltip .tooltip_text::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
+.email_tooltip:hover .tooltip_text {
+  visibility: visible;
+  opacity: 1;
+}
+
+.snackbar {
+  position: fixed;
+  visibility: hidden;
+  min-width: 250px;
+  margin-left: -125px;
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  border-radius: 2em;
+  padding: 16px;
+  z-index: 1;
+  left: 50%;
+  bottom: 30px;
+}
+
+.snackbar.show_snackbar {
+  visibility: visible;
+  animation: snackbar_fadein 0.5s ease, snackbar_fadeout 0.5s ease 2.5s;
+  -webkit-animation: snackbar_fadein 0.5s ease, snackbar_fadeout 0.5s ease 2.5s;
+}
+
+@-webkit-keyframes snackbar_fadein {
+  from {
+    bottom: 0;
+    opacity: 0;
+  }
+  to {
+    bottom: 30px;
+    opacity: 1;
+  }
+}
+
+@keyframes snackbar_fadein {
+  from {
+    bottom: 0;
+    opacity: 0;
+  }
+  to {
+    bottom: 30px;
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes snackbar_fadeout {
+  from {
+    bottom: 30px;
+    opacity: 1;
+  }
+  to {
+    bottom: 0;
+    opacity: 0;
+  }
+}
+
+@keyframes snackbar_fadeout {
+  from {
+    bottom: 30px;
+    opacity: 1;
+  }
+  to {
+    bottom: 0;
+    opacity: 0;
+  }
+}

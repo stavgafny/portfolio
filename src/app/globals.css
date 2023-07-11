@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+
+@media (prefers-color-scheme: dark) {
+}
+
 :root {
   --app-fg: #f5f3f5;
   --app-bg: linear-gradient(#21222a, #000);
@@ -26,57 +30,17 @@
   margin-top: 64px;
 }
 
-@media (prefers-color-scheme: dark) {
-}
+/* html {
+  scroll-behavior: smooth;
+} */
 
 body {
   color: var(--app-fg);
-  background-image: var(--app-bg)
+  background-image: var(--app-bg);
 }
 
 *::selection {
   color: #1c1c1e;
   background: var(--primary-color);
   text-shadow: none;
-}
-
-.snackbar {
-  position: fixed;
-  visibility: hidden;
-  min-width: 250px;
-  margin-left: -125px;
-  background-color: #333;
-  color: #fff;
-  text-align: center;
-  border-radius: 2em;
-  padding: 16px;
-  z-index: 1;
-  left: 50%;
-  bottom: 30px;
-}
-
-.snackbar.show {
-  visibility: visible;
-  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
-  animation: fadein 0.5s, fadeout 0.5s 2.5s;
-}
-
-@-webkit-keyframes fadein {
-  from {bottom: 0; opacity: 0;}
-  to {bottom: 30px; opacity: 1;}
-}
-
-@keyframes fadein {
-  from {bottom: 0; opacity: 0;}
-  to {bottom: 30px; opacity: 1;}
-}
-
-@-webkit-keyframes fadeout {
-  from {bottom: 30px; opacity: 1;}
-  to {bottom: 0; opacity: 0;}
-}
-
-@keyframes fadeout {
-  from {bottom: 30px; opacity: 1;}
-  to {bottom: 0; opacity: 0;}
 }

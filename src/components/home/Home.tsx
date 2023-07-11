@@ -1,11 +1,15 @@
-import Link from 'next/link'
 import styles from './Home.module.css'
+import Link from 'next/link'
 import { HiOutlineDocumentText } from 'react-icons/hi'
 import { FiGithub } from 'react-icons/fi'
+import ScrollLink from '../shared/ScrollLink'
 
 export default function Home () {
   return (
-    <main className='w-screen h-screen flex flex-col justify-center items-center pb-40'>
+    <main
+      id='home'
+      className='w-screen min-h-screen flex flex-col justify-center items-center pb-40'
+    >
       <div className='flex flex-col'>
         <div
           className={
@@ -26,6 +30,7 @@ export default function Home () {
             <a
               href='https://github.com/stavgafny'
               title='Explore my repositories'
+              target='_blank'
               className='flex w-full h-full justify-center items-center'
             >
               <FiGithub className='scale-150' />
@@ -44,9 +49,9 @@ export default function Home () {
         </div>
       </div>
       <div className={styles.scroller} title='Down we go'>
-        <a href='/'>
+        <ScrollLink href='#about'>
           <span></span>
-        </a>
+        </ScrollLink>
       </div>
     </main>
   )
