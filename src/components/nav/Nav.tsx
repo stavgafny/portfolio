@@ -18,7 +18,7 @@ export default function Nav () {
 
   return (
     <>
-      <nav className='fixed top-0 z-50 w-full flex items-center flex-wrap shadow-md'>
+      <nav className='fixed top-0 z-50 w-full flex items-center flex-wrap'>
         <div className={`w-full ${navHeight} flex justify-end lg:hidden`}>
           <HamburgerMenu opened={opened} onTap={handleClick} />
         </div>
@@ -27,12 +27,12 @@ export default function Nav () {
             opened ? 'nav_opened' : ''
           } w-full lg:hidden`}
         >
-          <_NavItems onItemClick={() => setOpened(false)} />
+          <_NavLink onItemClick={() => setOpened(false)} />
         </div>
         <div
           className={`w-full ${navHeight} flex justify-center gap-x-16 max-lg:hidden`}
         >
-          <_NavItems onItemClick={() => {}} />
+          <_NavLink onItemClick={() => {}} />
         </div>
       </nav>
       <div
@@ -45,7 +45,7 @@ export default function Nav () {
   )
 }
 
-const _NavItems = ({ onItemClick }: { onItemClick: Function }) => {
+const _NavLink = ({ onItemClick }: { onItemClick: Function }) => {
   const commonProps = {
     onClick: onItemClick,
     linkType: LinkType.SCROLL

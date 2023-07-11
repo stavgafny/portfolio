@@ -1,5 +1,20 @@
 nav {
   background-color: var(--nav-bg);
+  box-shadow: 0px 0px 12px #000a;
+  overflow: hidden;
+  transform: translateY(-100%);
+  transform-origin: top;
+  animation: slide_nav_in .8s ease forwards;
+  animation-delay: 3s;
+}
+
+@keyframes slide_nav_in {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(0);
+  }
 }
 
 .nav_content {

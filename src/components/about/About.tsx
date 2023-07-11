@@ -20,7 +20,10 @@ export default function About () {
       </div>
 
       <AnimateOnScrollObserver
-        className={styles.github_activity_panel_wrapper + ' lg:px-14 max-lg:justify-center'}
+        className={
+          styles.github_activity_panel_wrapper +
+          ' lg:px-14 max-lg:justify-center'
+        }
         onScollViewdClassName={styles.on_scoll_fade_in}
       >
         <GithubActivityPanel />
