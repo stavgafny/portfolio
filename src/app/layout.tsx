@@ -1,6 +1,6 @@
 import './globals.css';
 import { Tilt_Neon } from 'next/font/google';
-import Nav, {navHeight} from '@/components/nav/Nav';
+import Nav from '@/components/nav/Nav';
 
 const defaultFont = Tilt_Neon({ subsets: ['latin'], weight: "400" })
 
@@ -18,7 +18,6 @@ export default function RootLayout({
     <html lang="en">
       <body className={defaultFont.className}>
         <Nav />
-        <div className={navHeight} />
         {children}
       </body>
     </html>

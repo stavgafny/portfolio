@@ -8,7 +8,7 @@ import styles from './ContactFooter.module.css'
 
 export default function ContactFooter () {
   return (
-    <footer className='py-8 flex flex-col gap-8 text-center bg-[#1c1b1f]'>
+    <footer className='py-8 flex flex-col gap-8 text-center bg-[#222126]'>
       <h1>Find me on</h1>
       <div className='flex justify-center gap-16 lg:gap-24'>
         <ContactLinks

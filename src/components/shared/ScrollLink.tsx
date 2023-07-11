@@ -18,7 +18,6 @@ const ScrollLink = ({ children, ...props }: ScrollLinkProps) => {
     e.preventDefault()
     const targetId = e.currentTarget.href.replace(/.*\#/, '')
     const element = document.getElementById(targetId)
-    console.log(element?.getBoundingClientRect().top)
 
     element?.scrollIntoView({
       behavior: 'smooth',

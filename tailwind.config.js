@@ -8,9 +8,7 @@ module.exports = {
   theme: {
     extend: {
       backgroundImage: {
-        'home_bg': "url('/assets/home/background.png')",
-        'about_bg': "url('/assets/about/background.jpg')",
-        'about_profile_blob': "url('/assets/about/profile_blob.jpg')",
+        'about_profile_blob': "url('/assets/about/profile_blob.png')",
       },
     },
   },

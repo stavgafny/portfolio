@@ -9,9 +9,9 @@ interface IAnimateOnScrollObserver {
 }
 
 export default function AnimateOnScrollObserver ({
-    children,
-    className,
-    onScollViewdClassName
+  children,
+  className,
+  onScollViewdClassName
 }: IAnimateOnScrollObserver) {
   const ref = useRef(null)
 
@@ -40,11 +40,7 @@ export default function AnimateOnScrollObserver ({
 const _createObserver = (onScollViewdClassName: string) => {
   return new IntersectionObserver(entries => {
     for (const entry of entries) {
-      entry.target.classList.toggle(
-        onScollViewdClassName,
-        entry.isIntersecting
-      )
-      console.log(entry.target.classList)
+      entry.target.classList.toggle(onScollViewdClassName, entry.isIntersecting)
     }
   })
 }

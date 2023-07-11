@@ -1,6 +1,4 @@
-:root {
-  --transition-in: all 2s cubic-bezier(0.19, 1, 0.22, 1);
-
+.github_activity_panel {
   --github_activity_panel-padding: 10px;
   --github_activity_panel-border-radius: 1vw;
   --contributions-chart-grid-gap: 12px;
@@ -8,30 +6,7 @@
   --contributions-chart-dates-height: 8px;
   --contributions-chart-days-width: 26px;
   --contributions-chart-tooltip-height: 28px;
-}
 
-.about_content {
-  color: #eee;
-  transform: translateX(50%);
-  opacity: 0;
-  transition: var(--transition-in);
-}
-.about_content.show {
-  transform: translateX(0%);
-  opacity: 1;
-}
-
-
-.about_content h1 {
-  color: #fff;
-  text-shadow: 5px 5px 5px #000;
-}
-
-.about_content span {
-  text-shadow: 0px 0px 4px #000;
-}
-
-.github_activity_panel {
   position: relative;
   max-width: 100%;
   background-color: var(--secondary-color);
@@ -40,29 +15,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-
-  opacity: 0;
-  transform: scale(0);
-  transition: var(--transition-in);
-}
-
-.github_activity_panel.show {
-  opacity: 1;
-  animation: .75s pop-in cubic-bezier(.26, .53, .65, 1.5) forwards;
-}
-
-@keyframes pop-in {
-  0% {
-    transform: scale(0.5);
-  }
-
-  100% {
-    transform: scale(1);
-  }
-}
-
-@media screen and (prefers-reduced-motion: reduce) {
-  .github_activity_panel.show { animation: none; }
+  align-self: flex-start;
 }
 
 .github_activity_panel .loading {
@@ -72,11 +25,11 @@
   stroke: #ff3a5e;
 }
 
-.loading .circular-loader {
-  animation: rotate 2s linear infinite;
+.loading .circular_loader {
+  animation: loadingIndicator 2s linear infinite;
 }
 
-.loading .loader-path {
+.loading .loader_path {
   fill: none;
   stroke-width: 1.5px;
   animation: animate-stroke 1.5s ease-in-out infinite;
@@ -93,6 +46,7 @@
 }
 
 .stargazers .repos_dropdown {
+  display: none;
   max-height: 100px;
   transform: translateY(-100%);
   opacity: 0;
@@ -101,7 +55,7 @@
   overflow: hidden;
   background-color: inherit;
   padding: 2px 10px;
-  border-radius: .75em;
+  border-radius: 0.75em;
   user-select: text;
 }
 
@@ -116,14 +70,16 @@
 }
 
 .stargazers .repos_dropdown::-webkit-scrollbar-track {
-  margin: .5em;
+  margin: 0.5em;
 }
 
-.stargazers:hover .repos_dropdown {
+.stargazers:hover .repos_dropdown, .stargazers:active .repos_dropdown {
+  display: flex;
   transform-origin: bottom;
   width: fit-content;
   overflow-y: scroll;
-  animation: repos_dropdown_animation .5s forwards cubic-bezier(0.19, 1, 0.22, 1);
+  animation: repos_dropdown_animation 0.5s forwards
+    cubic-bezier(0.19, 1, 0.22, 1);
 }
 
 @keyframes repos_dropdown_animation {
@@ -148,13 +104,12 @@
 }
 
 .repos .repo_name_link {
-    display: inline-block;
-    position: relative;
+  display: inline-block;
+  position: relative;
 }
 
-
 .repos .repo_name_link:hover {
-    color: #fd5a6e;
+  color: #fd5a6e;
 }
 
 .github_activity_panel .contributions_chart {
@@ -183,20 +138,22 @@
 }
 
 .contributions_chart::-webkit-scrollbar-track {
-  margin-left: calc(var(--github_activity_panel-padding) + var(--contributions-chart-days-width));
+  margin-left: calc(
+    var(--github_activity_panel-padding) + var(--contributions-chart-days-width)
+  );
 }
 
-.contributions_chart .dates {
+.contributions_chart .chart_dates {
   grid-column: 2;
   height: var(--contributions-chart-dates-height);
 }
 
-.contributions_chart .days {
+.contributions_chart .chart_days {
   grid-row: 2;
   width: var(--contributions-chart-days-width);
 }
 
-.contributions_chart .cells {
+.contributions_chart .chart_cells {
   grid-row: 2;
   grid-column: 2;
 
@@ -205,20 +162,30 @@
   grid-template-rows: repeat(7, 1fr);
 }
 
-
 .contribution_cell {
   width: min-content;
   height: min-content;
   border-radius: 3px;
 }
 
-.contribution_cell.level0 { background-color: #222229; }
-.contribution_cell.level1 { background-color: #ff3a5e40; }
-.contribution_cell.level2 { background-color: #ff3a5e76; }
-.contribution_cell.level3 { background-color: #ff3a5e92; }
-.contribution_cell.level4 { background-color: #ff3a5ec8; }
-.contribution_cell.level5 { background-color: #ff3a5e; }
-
+.contribution_cell.cell_level0 {
+  background-color: #222229;
+}
+.contribution_cell.cell_level1 {
+  background-color: #ff3a5e40;
+}
+.contribution_cell.cell_level2 {
+  background-color: #ff3a5e76;
+}
+.contribution_cell.cell_level3 {
+  background-color: #ff3a5e92;
+}
+.contribution_cell.cell_level4 {
+  background-color: #ff3a5ec8;
+}
+.contribution_cell.cell_level5 {
+  background-color: #ff3a5e;
+}
 
 .contribution_tooltip {
   position: relative;
@@ -243,7 +210,7 @@
 }
 
 .contribution_tooltip .tooltip_text::after {
-  content: "";
+  content: '';
   position: absolute;
   top: 100%;
   left: 50%;
@@ -257,17 +224,28 @@
   visibility: visible;
 }
 
-.contribution_tooltip .tooltip_text.left { transform: translateX(-5%); }
-.contribution_tooltip .tooltip_text.left::after { left: 5%; }
+.contribution_tooltip .tooltip_text.tooltip_align_left {
+  transform: translateX(-5%);
+}
+.contribution_tooltip .tooltip_text.tooltip_align_left::after {
+  left: 5%;
+}
 
-.contribution_tooltip .tooltip_text.center { transform: translateX(-50%); }
-.contribution_tooltip .tooltip_text.center::after { left: 50%; }
+.contribution_tooltip .tooltip_text.tooltip_align_center {
+  transform: translateX(-50%);
+}
+.contribution_tooltip .tooltip_text.tooltip_align_center::after {
+  left: 50%;
+}
 
-.contribution_tooltip .tooltip_text.right { transform: translateX(-95%); }
-.contribution_tooltip .tooltip_text.right::after { left: 95%; }
+.contribution_tooltip .tooltip_text.tooltip_align_right {
+  transform: translateX(-95%);
+}
+.contribution_tooltip .tooltip_text.tooltip_align_right::after {
+  left: 95%;
+}
 
-
-@keyframes rotate {
+@keyframes loadingIndicator {
   100% {
     transform: rotate(360deg);
   }
@@ -286,10 +264,4 @@
     stroke-dasharray: 89, 200;
     stroke-dashoffset: -124;
   }
-}
-
-
-.aa {
-  width: 500px;
-  height: 500px;
 }

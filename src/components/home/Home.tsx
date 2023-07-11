@@ -6,10 +6,7 @@ import ScrollLink from '../shared/ScrollLink'
 
 export default function Home () {
   return (
-    <main
-      id='home'
-      className='w-screen min-h-screen flex flex-col justify-center items-center pb-40'
-    >
+    <main className='w-screen min-h-screen flex flex-col justify-center items-center pb-40'>
       <div className='flex flex-col'>
         <div
           className={
