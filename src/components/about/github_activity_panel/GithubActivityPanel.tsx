@@ -145,7 +145,7 @@ function _ChartDates ({ dates }: { dates: string[] }) {
           currentMonth = month
           return (
             <span
-              key={month}
+              key={`${month}~${pos}`}
               className='absolute text-xs'
               style={{ left: `${pos * ChartCell.step}px` }}
             >

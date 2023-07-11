@@ -1,11 +1,12 @@
 import Home from '@/components/home/Home'
 import About from '@/components/about/About'
 import ContactFooter from '@/components/contact_footer/ContactFooter'
-import { navHeight } from '@/components/nav/Nav'
+import Nav, { navHeight } from '@/components/nav/Nav'
 
 export default function Main () {
   return (
     <div className='overflow-x-hidden'>
+      <Nav />
       <_ScrollScreen id='home' screen={<Home />} />
       <_ScrollScreen id='about' screen={<About />} />
       <ContactFooter />

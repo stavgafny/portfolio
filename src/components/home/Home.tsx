@@ -18,7 +18,7 @@ export default function Home () {
             <h1>Hello.</h1>
           </div>
           <div className={styles.title_wrapper}>
-            <h1>I'm</h1>
+            <h1>I&apos;m</h1>
             <h1 className={styles.name}>Stav Gafny</h1>
           </div>
         </div>

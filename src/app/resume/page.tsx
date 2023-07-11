@@ -1,11 +1,10 @@
 export default function Resume () {
   return (
-    <main className="w-full h-screen relative">
+    <main className='w-full h-screen relative overflow-hidden'>
       <iframe
         src='/assets/resume/resume.pdf#view=fitW'
         title='testPdf'
-        height='100%'
-        width='100%'
+        className='w-full h-full'
       />
     </main>
   )
