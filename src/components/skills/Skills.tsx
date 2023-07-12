@@ -1,5 +1,12 @@
 import styles from './Skills.module.css'
 import AnimateOnScrollObserver from '../shared/AnimateOnScrollObserver'
+import { IconType } from 'react-icons/lib'
+import { LuMonitor } from 'react-icons/lu'
+import { VscTools } from 'react-icons/vsc'
+import { GrReactjs } from 'react-icons/gr'
+import { TbBrandFlutter } from 'react-icons/tb'
+import { BsDatabase } from 'react-icons/bs'
+import { HiOutlineServer } from 'react-icons/hi'
 
 export default function Skills () {
   return (
@@ -14,37 +21,37 @@ export default function Skills () {
         </div>
 
         <div
-          className={styles.skill_boxes + ' w-full 2xl:w-4/5 lg:grid-cols-3'}
+          className={
+            styles.skill_boxes + ' w-full grid 2xl:w-4/5 lg:grid-cols-3'
+          }
         >
           <SkillBox
-            title='Software Development'
+            title='Software Dev'
             markerColor='bg-pink-400'
+            icons={[LuMonitor, VscTools]}
             sections={[
               {
-                title: '',
                 tagId: 'Languages',
                 content: [
                   'Experienced in both functional and OOP in: Dart, Python, JavaScript, and TypeScript.'
                 ]
               },
               {
-                title: '',
-                tagId: 'Tools',
-                content: ['Git, Github, VS Code, Vim, Docker, Bash.']
-              },
-              {
-                title: '',
                 tagId: 'Methodologies',
                 content: ['Utilize CI/CD and TDD in my development.']
+              },
+              {
+                tagId: 'Tools',
+                content: ['Git, Github, VS Code, Vim, Docker, Bash.']
               }
             ]}
           />
           <SkillBox
             title='Frontend Dev'
             markerColor='bg-blue-400'
+            icons={[GrReactjs, TbBrandFlutter]}
             sections={[
               {
-                title: '',
                 tagId: 'React',
                 content: [
                   'With more than 2 years of development experience in: HTML, CSS, JS, React and NextJS frameworks.',
@@ -53,7 +60,6 @@ export default function Skills () {
                 ]
               },
               {
-                title: '',
                 tagId: 'Flutter',
                 content: [
                   'Bringing over 2 years of development experience in Flutter framework to develop mobile apps and cross-platform solutions.',
@@ -66,17 +72,15 @@ export default function Skills () {
           <SkillBox
             title='Backend Dev'
             markerColor='bg-orange-400'
+            icons={[BsDatabase, HiOutlineServer]}
             sections={[
               {
-                title: '',
                 tagId: 'Know-how',
                 content: [
-                  'Strong Knowledge in networking concepts such as:',
-                  'HTTP, Sockets, OSI model cryptography and security'
+                  'Extensive hands-on experience with Firebase, including authentication, real-time database integration, cloud functions, and other related features.'
                 ]
               },
               {
-                title: '',
                 tagId: 'Knowledge',
                 content: [
                   '• Networking concepts: HTTP, Sockets, OSI model.',
@@ -85,10 +89,9 @@ export default function Skills () {
                 ]
               },
               {
-                title: '',
                 tagId: 'Tools2',
                 content: [
-                  'Proficient in: SQL, GraphQL, Express.js, Firebase, AWS'
+                  'Well-versed in OAuth, SQL, GraphQL, Express.js, Firebase, AWS.'
                 ]
               }
             ]}
@@ -102,22 +105,33 @@ export default function Skills () {
 interface SkillBoxProps {
   title: string
   markerColor: string
+  icons: [IconType, IconType]
   sections?: SkillSectionProps[]
 }
 
-function SkillBox ({ title, markerColor, sections }: SkillBoxProps) {
+function SkillBox ({ title, markerColor, icons, sections }: SkillBoxProps) {
+  const IconWrapper = ({ Icon }: { Icon: IconType }) => {
+    return (
+      <div className='w-full h-full flex justify-center items-center'>
+        {<Icon className='w-auto h-full' />}
+      </div>
+    )
+  }
   return (
     <div className={styles.skill_box}>
-      <div className={styles.skill_box_title}>
-        <div
-          className={`${styles.skill_box_title_marker} ${markerColor}`}
-        ></div>
-        <h1>{title}</h1>
+      <div className={styles.skill_box_header}>
+        <IconWrapper Icon={icons[0]} />
+        <div className={styles.skill_box_title}>
+          <div
+            className={`${styles.skill_box_title_marker} ${markerColor}`}
+          ></div>
+          <h1>{title}</h1>
+        </div>
+        <IconWrapper Icon={icons[1]} />
       </div>
       {sections?.map(section => (
         <SkillSection
           key={section.tagId}
-          title={section.title}
           tagId={section.tagId}
           content={section.content}
         />
@@ -127,18 +141,13 @@ function SkillBox ({ title, markerColor, sections }: SkillBoxProps) {
 }
 
 interface SkillSectionProps {
-  title: string
   tagId: string
   content: string[]
 }
 
-function SkillSection ({ title, tagId, content }: SkillSectionProps) {
+function SkillSection ({ tagId, content }: SkillSectionProps) {
   return (
     <section className={styles.skill_section}>
-      <div className={styles.section_title}>
-        <h1>{title}</h1>
-      </div>
-
       <div
         className={styles.section_content + ' text-lg max-lg:text-base'}
         content={`<p id="${tagId}">`}

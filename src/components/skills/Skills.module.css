@@ -24,7 +24,6 @@
 }
 
 .skill_boxes {
-  display: grid;
   margin-top: 10vh;
   height: auto;
   /* white-space: nowrap; */
@@ -39,14 +38,22 @@
   border-radius: 15px;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
+  justify-content: space-evenly;
 }
 
-.skill_box .skill_box_title {
+.skill_box .skill_box_header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.skill_box_header .skill_box_title {
   padding: 0 5px;
   font-size: 28px;
   overflow: hidden;
   position: relative;
+  flex-shrink: 0;
 }
 
 .skill_box_title .skill_box_title_marker {
@@ -75,10 +82,6 @@
   width: 100%;
   background-color: inherit;
   padding: 10px;
-}
-
-.skill_section .section_title {
-  
 }
 
 .skill_section .section_content {
