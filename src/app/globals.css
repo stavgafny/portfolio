@@ -8,7 +8,7 @@
 
 :root {
   --app-fg: #f5f3f5;
-  --app-bg: linear-gradient(#21222a 0%, #050506 40%, #050506 50%, #1f1921 100%);
+  --app-bg: linear-gradient(#21222a 0%, #050506 30%, #050506 32%, #1e191f 60%, #1e191f 65%, #050506 100%);
   --nav-bg: #1f1f24;
   --primary-color: #f394a0;
   --secondary-color: #14151e;

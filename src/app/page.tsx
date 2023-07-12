@@ -2,6 +2,7 @@ import Home from '@/components/home/Home'
 import About from '@/components/about/About'
 import ContactFooter from '@/components/contact_footer/ContactFooter'
 import Nav, { navHeight } from '@/components/nav/Nav'
+import Skills from '@/components/skills/Skills'
 
 export default function Main () {
   return (
@@ -9,6 +10,7 @@ export default function Main () {
       <Nav />
       <_ScrollScreen id='home' screen={<Home />} />
       <_ScrollScreen id='about' screen={<About />} />
+      <_ScrollScreen id='skills' screen={<Skills />} />
       <ContactFooter />
     </div>
   )

@@ -1,0 +1,71 @@
+.title {
+  margin-top: 3rem;
+  overflow: hidden;
+}
+
+@keyframes slide_title_in_animation {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+.title h1 {
+  text-shadow: 5px 0px 5px #000;
+  padding: 4px;
+  transform: translateY(-100%);
+  transform-origin: top;
+}
+
+.slide_title_in h1 {
+  animation: slide_title_in_animation 1s ease forwards 0.2s;
+}
+
+.skill_boxes {
+  margin-top: 10vh;
+  width: 60%;
+  height: auto;
+}
+
+.skill_boxes .skill_box {
+  width: 100%;
+  min-height: 350px;
+  padding: 20px;
+  border: 1px solid var(--primary-color);
+  box-shadow: 0px 0px 10px #000a;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.skill_box .skill_box_title {
+    padding: 0 5px;
+    font-size: 28px;
+    overflow: hidden;
+    position: relative;
+}
+
+.skill_box_title .skill_box_title_marker {
+    width: 100%;
+    height: 35%;
+    transform: translateX(-101%);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+    border-radius: 10px 0px;
+    animation: marker_transition 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards 1s;
+}
+
+
+@keyframes marker_transition {
+  0% {
+    transform: translateX(-101%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}

@@ -1,11 +1,9 @@
 export default function ContentSection () {
   return (
     <div className='about_content flex flex-col gap-2 text-1xl'>
-      <h1 className='lg:pt-10 lg:text-5xl max-lg:text-4xl max-lg:text-center'>
-        About Me
-      </h1>
+      <h1 className='lg:pt-10 text-6xl max-lg:text-center'>About Me</h1>
 
-      <div>
+      <div className='mt-4'>
         <span>My name is </span>
         <span className='text-red-300'>Stav Gafny </span>
         <span>and I am from Ramat Hasharon, Israel.</span>
@@ -30,7 +28,7 @@ export default function ContentSection () {
         watching Friends, and playing video games, chilling with some music.
       </span>
 
-      <div className='text-sm text-gray-400 flex flex-col'>
+      <div className='text-sm text-gray-400 flex flex-col mt-4'>
         <p>
           Explore my portfolio and get in touch if you have any questions or if
           you&apos;d like to discuss potential collaborations.

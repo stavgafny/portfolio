@@ -1,6 +1,6 @@
 .profile_blob {
-  width: 300px;
-  height: 300px;
+  width: 350px;
+  height: 350px;
   animation: profile_blob_animation 15s ease-in-out infinite;
   transform: translateX(-100%);
   opacity: 0;
