@@ -1,0 +1,67 @@
+.github_panel {
+  --github_activity_panel-padding: 10px;
+  --github_activity_panel-border-radius: 1vw;
+  --contributions-chart-grid-gap: 12px;
+  --contributions-chart-top-padding: 2em;
+  --contributions-chart-dates-height: 8px;
+  --contributions-chart-days-width: 26px;
+  --contributions-chart-tooltip-height: 28px;
+
+  position: relative;
+  max-width: 100%;
+  background-color: var(--secondary-color);
+  border-radius: var(--github_activity_panel-border-radius);
+  padding: var(--github_activity_panel-padding);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-self: flex-start;
+}
+
+.github_panel .no_data {
+  width: 910px;
+  height: 228px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.loading_indicator {
+  width: 100px;
+  height: 100px;
+  margin: 0px auto;
+  stroke: #ff3a5e;
+}
+
+.loading_indicator .circular_loader {
+  animation: loading_indicator_animation 2s linear infinite;
+}
+
+.loading_indicator .loader_path {
+  fill: none;
+  stroke-width: 1.5px;
+  animation: animate_indicator_stroke 1.5s ease-in-out infinite;
+  stroke-linecap: round;
+}
+
+@keyframes loading_indicator_animation {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes animate_indicator_stroke {
+  0% {
+    stroke-dasharray: 1, 200;
+    stroke-dashoffset: 0;
+  }
+  50% {
+    stroke-dasharray: 89, 200;
+    stroke-dashoffset: -35;
+  }
+  100% {
+    stroke-dasharray: 89, 200;
+    stroke-dashoffset: -124;
+  }
+}

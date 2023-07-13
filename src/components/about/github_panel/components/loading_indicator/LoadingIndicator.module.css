@@ -1,0 +1,38 @@
+.loading_indicator {
+  width: 100px;
+  height: 100px;
+  margin: 0px auto;
+  stroke: #ff3a5e;
+}
+
+.loading_indicator .circular_loader {
+  animation: loading_indicator_animation 2s linear infinite;
+}
+
+.loading_indicator .loader_path {
+  fill: none;
+  stroke-width: 1.5px;
+  animation: animate_indicator_stroke 1.5s ease-in-out infinite;
+  stroke-linecap: round;
+}
+
+@keyframes loading_indicator_animation {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes animate_indicator_stroke {
+  0% {
+    stroke-dasharray: 1, 200;
+    stroke-dashoffset: 0;
+  }
+  50% {
+    stroke-dasharray: 89, 200;
+    stroke-dashoffset: -35;
+  }
+  100% {
+    stroke-dasharray: 89, 200;
+    stroke-dashoffset: -124;
+  }
+}

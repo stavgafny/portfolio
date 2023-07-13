@@ -1,7 +1,7 @@
 import styles from './About.module.css'
 import AnimateOnScrollObserver from '../shared/AnimateOnScrollObserver'
 import ContentSection from './ContentSection'
-import GithubActivityPanel from './github_activity_panel/GithubActivityPanel'
+import GithubActivityPanel from './github_panel/github_activity_panel/GithubActivityPanel'
 
 export default function About () {
   return (
