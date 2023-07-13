@@ -2,21 +2,23 @@
 
 import { useEffect, useRef } from 'react'
 
-interface IAnimateOnScrollObserver {
+export interface AnimateOnScrollObserverProps {
   children?: React.ReactNode
   className?: string
   onScollViewdClassName: string
+  repetitive?: boolean
 }
 
 export default function AnimateOnScrollObserver ({
   children,
   className,
-  onScollViewdClassName
-}: IAnimateOnScrollObserver) {
+  onScollViewdClassName,
+  repetitive = false
+}: AnimateOnScrollObserverProps) {
   const ref = useRef(null)
 
   useEffect(() => {
-    const observer = _createObserver(onScollViewdClassName)
+    const observer = _createIntersectionObserver(onScollViewdClassName, repetitive)
 
     const element = ref.current
 
@@ -37,10 +39,10 @@ export default function AnimateOnScrollObserver ({
   )
 }
 
-const _createObserver = (onScollViewdClassName: string) => {
-  return new IntersectionObserver(entries => {
-    for (const entry of entries) {
-      entry.target.classList.toggle(onScollViewdClassName, entry.isIntersecting)
-    }
-  })
+const _createIntersectionObserver = (onScollViewdClassName: string, repetitive: boolean) => {
+  const onIntersectionChange = repetitive
+    ? (entry: IntersectionObserverEntry) => entry.target.classList.toggle(onScollViewdClassName, entry.isIntersecting)
+    : (entry: IntersectionObserverEntry) => entry.isIntersecting && entry.target.classList.add(onScollViewdClassName)
+
+  return new IntersectionObserver(entries => entries.map(entry => onIntersectionChange(entry)));
 }

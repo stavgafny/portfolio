@@ -42,6 +42,38 @@
   justify-content: space-evenly;
 }
 
+.skill_box.slideable {
+  opacity: 0;
+  transform: translateY(20%);
+  transform-origin: center;
+}
+
+.skill_box.slideable.slide_in {
+  animation: slide_skill_box_in_animation .75s ease forwards;
+}
+
+.skill_box.slideable:not(.slide_in) * {
+  display: none;
+}
+
+.skill_box.slideable.slide_in:nth-child(2) {
+  animation-delay: 0.1s;
+}
+.skill_box.slideable.slide_in:nth-child(3) {
+  animation-delay: 0.2s;
+}
+
+@keyframes slide_skill_box_in_animation {
+  from {
+    opacity: 0;
+    transform: translateY(20%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .skill_box .skill_box_header {
   width: 100%;
   display: flex;
@@ -66,7 +98,7 @@
   z-index: -1;
   border-radius: 10px 0px;
   animation: marker_transition 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards
-    1s;
+    .7s;
 }
 
 @keyframes marker_transition {
