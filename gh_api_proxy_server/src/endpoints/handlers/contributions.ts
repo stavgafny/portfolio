@@ -1,5 +1,5 @@
-import { EndpointReturnType } from "..";
-import { QueryReturnType } from "../../query_api";
+import { EndpointReturnType } from "../endpoint";
+import { QueryReturnType } from "../utils/query_api";
 
 
 export interface ContributionQueryType {

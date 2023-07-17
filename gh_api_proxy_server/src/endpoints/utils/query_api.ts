@@ -18,7 +18,7 @@ export type QueryReturnType<T> = {
     status: "ERROR"
 }
 
-export default async function queryApi(query: GraphqlQueries): Promise<QueryReturnType<any>> {
+export default async function queryApi<T>(query: GraphqlQueries): Promise<QueryReturnType<T>> {
     try {
         const response = await axios.post(apiUrl, { query }, { headers: tokenAuthHeader });
         if (response.status !== 200) {

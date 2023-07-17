@@ -1,7 +1,7 @@
 import contributions_mock from "./contributions_mock";
 import contributions_answer from "./contributions_answer";
 import endpoints from "../../src/endpoints";
-import { QueryReturnType } from "../../src/query_api";
+import { QueryReturnType } from "../../src/endpoints/utils/query_api";
 import { ContributionQueryType } from "../../src/endpoints/handlers/contributions";
 
 describe("contributions handler", () => {

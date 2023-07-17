@@ -1,6 +1,6 @@
 import stargazers_mock from "./stargazers_mock";
 import stargazers_answer from "./stargazers_answer";
-import { QueryReturnType } from "../../src/query_api";
+import { QueryReturnType } from "../../src/endpoints/utils/query_api";
 import { StargazersQueryType } from "../../src/endpoints/handlers/stargazers";
 import endpoints from "../../src/endpoints";
 

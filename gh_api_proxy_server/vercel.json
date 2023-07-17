@@ -1,0 +1,17 @@
+{
+    "version": 2,
+    "devCommand": "npm run dev",
+    "buildCommand": "npm run build",
+    "builds": [
+      {
+        "src": "build/app.js",
+        "use": "@vercel/node"
+      }
+    ],
+    "routes": [
+      {
+        "src": "/(.*)",
+        "dest": "build/app.js"
+      }
+    ]
+  }

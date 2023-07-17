@@ -1,35 +1,32 @@
-import GraphqlQueries from "../graphql_queries";
-import { QueryReturnType } from "../query_api";
-import contributionHandler from "./handlers/contributions";
-import stargazersHandler from "./handlers/stargazers";
+import GraphqlQueries from "./utils/graphql_queries";
+import Endpoint from "./endpoint";
+import contributionHandler, { ContributionQueryType, ContributionEndpointType } from "./handlers/contributions";
+import stargazersHandler, { StargazersQueryType, StargazersEndpointType } from "./handlers/stargazers";
+import Duration from "./utils/duration";
 
 
-export type EndpointReturnType<T> = {
-    data: T
-    status: 200
-} | {
-    data: "An error occurred",
-    status: 500
+type Endpoints = {
+    readonly contributions: Endpoint<ContributionQueryType, ContributionEndpointType>;
+    readonly stargazers: Endpoint<StargazersQueryType, StargazersEndpointType>;
 }
 
 
-interface Endpoint {
-    readonly name: string,
-    readonly handler: (returnedQuery: QueryReturnType<any>) => EndpointReturnType<any>,
-    query: GraphqlQueries
-}
 
-const endpoints: Readonly<Record<string, Endpoint>> = {
-    contributions: {
+const endpoints: Endpoints = {
+    contributions: new Endpoint({
         name: "/contributions",
+        query: GraphqlQueries.CONTRIBUTIONS,
         handler: contributionHandler,
-        query: GraphqlQueries.CONTRIBUTIONS
-    },
-    stargazers: {
+        cacheExpirationAge: Duration.toMS({ h: 3 })
+    }),
+    stargazers: new Endpoint({
         name: "/stargazers",
+        query: GraphqlQueries.STARGAZERS,
         handler: stargazersHandler,
-        query: GraphqlQueries.STARGAZERS
-    },
-} as const;
+        cacheExpirationAge: Duration.toMS({ h: 2 })
+    }),
+}
+
+
 
 export default endpoints;
