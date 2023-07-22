@@ -16,8 +16,8 @@ export default function GithubActivityPanel () {
     useState<GithubStargazersData | null>(null)
 
   useEffect(() => {
-    GithubApiHandler.getUserYearContributions().then(setContributionsData)
-    GithubApiHandler.getAllUserStargazersRepos().then(setStargazersData)
+    GithubApiHandler.getContributions().then(setContributionsData)
+    GithubApiHandler.getStargazers().then(setStargazersData)
   }, [])
 
   return (
@@ -30,7 +30,7 @@ export default function GithubActivityPanel () {
             stargazersData?.repos.map(repo => {
               return {
                 label: repo.name,
-                count: repo.stargazers,
+                count: repo.count,
                 link: GithubApiHandler.getRepoLink(repo.name)
               }
             }) ?? []

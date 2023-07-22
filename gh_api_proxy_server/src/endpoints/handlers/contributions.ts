@@ -22,11 +22,11 @@ export interface ContributionQueryType {
 }
 
 export interface ContributionEndpointType {
-    readonly total: number
-    readonly dates: {
-        readonly date: string,
-        readonly count: number,
-        readonly level: number
+    readonly total: number;
+    readonly contributions: {
+        readonly date: string;
+        readonly count: number;
+        readonly level: number;
     }[]
 }
 
@@ -54,7 +54,7 @@ const digestData = (returnedQueryData: ContributionQueryType): ContributionEndpo
 
     return {
         total: data.totalContributions,
-        dates: data.weeks.map(week => week.contributionDays).flat().map(day => {
+        contributions: data.weeks.map(week => week.contributionDays).flat().map(day => {
             return {
                 date: day.date,
                 count: day.contributionCount,

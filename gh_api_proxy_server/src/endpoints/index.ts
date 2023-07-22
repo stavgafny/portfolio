@@ -11,7 +11,6 @@ type Endpoints = {
 }
 
 
-
 const endpoints: Endpoints = {
     contributions: new Endpoint({
         name: "/contributions",
@@ -27,6 +26,11 @@ const endpoints: Endpoints = {
     }),
 }
 
+export const endpointsInfo: { [key: string]: string } =
+{
+    [endpoints.contributions.name]: `{ total: number, contributions: {date: string, count: number, level: number}[] }`,
+    [endpoints.stargazers.name]: `{ total: number, repos: {name: string, count: number}[] }`,
+};
 
 
 export default endpoints;

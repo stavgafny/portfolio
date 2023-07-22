@@ -1,17 +1,16 @@
 {
-    "version": 2,
-    "devCommand": "npm run dev",
-    "buildCommand": "npm run build",
-    "builds": [
-      {
-        "src": "build/app.js",
-        "use": "@vercel/node"
-      }
-    ],
-    "routes": [
-      {
-        "src": "/(.*)",
-        "dest": "build/app.js"
-      }
-    ]
-  }
+  "version": 2,
+  "name": "gh-api-proxy-server",
+  "builds": [
+    {
+      "src": "src/app.ts",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "src/app.ts"
+    }
+  ]
+}

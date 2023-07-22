@@ -1,6 +1,6 @@
 export default {
     "total": 310,
-    "dates": [
+    "contributions": [
         {
             "date": "2022-07-10",
             "count": 0,
