@@ -2,20 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
-
 @media (prefers-color-scheme: dark) {
 }
 
 :root {
   --app-fg: #f5f3f5;
-  --app-bg: linear-gradient(#21222a 0%, #050506 30%, #050506 32%, #1e191f 60%, #1e191f 65%, #050506 100%);
+  --app-bg: #121317;
   --nav-bg: #1f1f24;
   --primary-color: #f394a0;
   --secondary-color: #14151e;
 }
 
 :root::-webkit-scrollbar {
-
   background: var(--nav-bg);
   height: 10px;
   width: 10px;
@@ -32,7 +30,7 @@
 
 body {
   color: var(--app-fg);
-  background-image: var(--app-bg);
+  background-color: var(--app-bg);
 }
 
 *::selection {
@@ -40,3 +38,35 @@ body {
   background: var(--primary-color);
   text-shadow: none;
 }
+
+#home {
+  background-image: linear-gradient(
+    #21222a 0%,
+    #050506 90%,
+    #050506 100%
+  );
+}
+
+#about {
+  background-image: linear-gradient(
+    #050506 0%,
+    #1e191f 100%
+  );
+}
+
+
+#skills {
+  background-image: linear-gradient(
+    #1e191f 0%,
+    #050506 100%
+  );
+}
+
+#projects {
+  background-image: linear-gradient(
+    #050506 0%,
+    #2d2b33 100%
+  );
+}
+
+
