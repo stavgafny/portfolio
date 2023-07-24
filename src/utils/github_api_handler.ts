@@ -68,7 +68,10 @@ class _GithubApiMethods {
             if (response.status !== 200) throw null;
 
             const data: GithubStargazersData = await response.json();
-            return data;
+            return {
+                total: data.total,
+                repos: data.repos.sort((a, b) => b.count - a.count)
+            };
 
         } catch {
             return null;

@@ -52,7 +52,7 @@ export default function SkillBoxes () {
             content: [
               'Bringing over 2 years of development experience in Flutter framework to develop mobile apps and cross-platform solutions.',
               '',
-              'Technologies: Riverpod, Dio, SQLite, Mockito.'
+              'Technologies: Riverpod, Dio, SQLite.'
             ]
           }
         ]}
