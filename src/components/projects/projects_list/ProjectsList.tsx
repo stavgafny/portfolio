@@ -4,36 +4,36 @@ import styles from '../Projects.module.css'
 import Project, { ProjectProps, ProjectTag } from './Project'
 import ProjectsFilter from './ProjectsFilter'
 import { useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 
 const pList: ProjectProps[] = [
   { name: 'website', tags: ['web'] },
   { name: 'webgame', tags: ['web', 'game'] },
-  { name: 'app', tags: ['app'] }
+  { name: 'app', tags: ['app'] },
+  { name: 'game', tags: ['game'] },
+  { name: 'webweb', tags: ['web'] },
+  { name: 'webapp', tags: ['web', 'app'] },
+  { name: 'app2', tags: ['app'] }
 ]
 
 export default function ProjectsList () {
   const [projectsFilter, setProjectsFilter] = useState<ProjectTag | null>(null)
 
+  const filteredProjects =
+    projectsFilter === null
+      ? pList
+      : pList.filter(p => p.tags.includes(projectsFilter))
+
   return (
     <div className={styles.projects_list}>
       <ProjectsFilter onFilterChange={setProjectsFilter} />
-      <div className='w-full flex justify-center items-center'>
-        <div className='grid gap-10 w-3/5 max-md:w-full lg:grid-cols-2 xl:grid-cols-3'>
-          {pList
-            .filter(
-              project => projectsFilter ? project.tags.includes(projectsFilter) : true
-            )
-            .map(project => {
-              return (
-                <Project
-                  key={project.name}
-                  name={project.name}
-                  tags={project.tags}
-                />
-              )
-            })}
-        </div>
-      </div>
+      <motion.div layout={true} className={styles.projects_grid}>
+        <AnimatePresence>
+          {filteredProjects.map(project => {
+            return <Project key={project.name} project={project} />
+          })}
+        </AnimatePresence>
+      </motion.div>
     </div>
   )
 }

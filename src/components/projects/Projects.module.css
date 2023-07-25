@@ -59,22 +59,34 @@
   text-align: center;
 }
 
-.project {
+.projects_grid {
   width: 100%;
+  padding: 0 15%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  justify-content: center;
+  gap: 1rem;
+}
+
+.project {
+  --border-radius: .75em;
 }
 
 .project .project_image {
-  background-color: rgba(245, 245, 220, 0.483);
+  background-color: #787878;
   aspect-ratio: 1.5;
+  object-fit: cover;
   display: flex;
   justify-content: center;
   align-items: center;
+  border-radius: var(--border-radius) var(--border-radius) 0 0;
+
 }
 
 .project .project_info {
   background-color: #444;
   box-shadow: 0px 5px 5px #000;
   border-top: transparent;
-  border-radius: 0 0 .5em .5em;
   padding: 10px;
+  border-radius: 0 0 var(--border-radius) var(--border-radius);
 }

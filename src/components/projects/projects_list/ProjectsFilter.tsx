@@ -5,9 +5,7 @@ import { useState } from 'react'
 import { ProjectTag } from './Project'
 
 export default function ProjectsFilter ({onFilterChange}: {onFilterChange: (tag: ProjectTag | null) => void}) {
-  const [filterHighlightPosition, setFilterHighlightPosition] = useState(
-    styles.pos1
-  )
+  const [filterHighlightPosition, setFilterHighlightPosition] = useState(styles.pos1);
 
   const changeFilter = (tag: ProjectTag | null, position: string) => {
     setFilterHighlightPosition(position);
