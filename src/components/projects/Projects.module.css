@@ -29,7 +29,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 4em;
+  gap: 2rem;
 }
 
 .projects_filter {
@@ -45,13 +45,21 @@
   position: absolute;
   width: var(--step);
   height: 100%;
-  transition: left .5s cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition: left 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
-.filter_highlighter.pos1 {left: 0;}
-.filter_highlighter.pos2 {left: var(--step);}
-.filter_highlighter.pos3 {left: calc(var(--step) * 2);}
-.filter_highlighter.pos4 {left: calc(var(--step) * 3);}
+.filter_highlighter.pos1 {
+  left: 0;
+}
+.filter_highlighter.pos2 {
+  left: var(--step);
+}
+.filter_highlighter.pos3 {
+  left: calc(var(--step) * 2);
+}
+.filter_highlighter.pos4 {
+  left: calc(var(--step) * 3);
+}
 
 .projects_filter button {
   padding: 2px 12px;
@@ -63,30 +71,59 @@
   width: 100%;
   padding: 0 15%;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   justify-content: center;
   gap: 1rem;
+  grid-auto-rows: auto;
 }
 
 .project {
-  --border-radius: .75em;
+  --border-radius: 0.75em;
+  --project-image-height: 25vh;
+  --project-info-reveal-height: 45px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  padding-bottom: var(--project-info-reveal-height);
+  box-shadow: 0px 5px 10px #000;
 }
 
 .project .project_image {
-  background-color: #787878;
-  aspect-ratio: 1.5;
-  object-fit: cover;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: var(--border-radius) var(--border-radius) 0 0;
+  object-fit: fill;
+  height: var(--project-image-height);
+}
 
+.project .project_tags {
+  position: absolute;
+  top: calc(var(--project-image-height) - 32px);
+  left: 8px;
+  z-index: 1;
+  display: flex;
+  gap: 5px;
+}
+
+.project_tags .project_tag {
+  padding: 2px 6px;
+  background-color: #61616199;
+  border-radius: 1rem;
+  border: 1px solid #333;
 }
 
 .project .project_info {
-  background-color: #444;
-  box-shadow: 0px 5px 5px #000;
-  border-top: transparent;
+  width: 100%;
+  height: 100%;
+  background: #707173;
   padding: 10px;
-  border-radius: 0 0 var(--border-radius) var(--border-radius);
+  position: absolute;
+  top: calc(100% - var(--project-info-reveal-height));
+  z-index: 2;
+  transition: top .35s ease;
+}
+
+.project:hover .project_info {
+  top: 0;
 }
