@@ -1,6 +1,7 @@
 import styles from '../Projects.module.css'
 import { motion } from 'framer-motion'
 import Image, { StaticImageData } from 'next/image'
+import flutter from '../../../../public/assets/projects/flutter.svg'
 
 export type ProjectTag = 'web' | 'app' | 'game'
 
@@ -8,10 +9,11 @@ export interface ProjectProps {
   name: string
   tags: ProjectTag[]
   image: StaticImageData
+  description: string
 }
 
 export default function Project ({ project }: { project: ProjectProps }) {
-  const { name, tags, image } = project
+  const { name, tags, image, description } = project
   return (
     <motion.div
       layout={true}
@@ -25,13 +27,14 @@ export default function Project ({ project }: { project: ProjectProps }) {
       className={styles.project}
     >
       <Image
+        priority
         alt='image'
         src={image}
         quality={100}
         className={styles.project_image}
       />
       <_Tags tags={tags} />
-      <_Info name={name} />
+      <_Info name={name} description={description} />
     </motion.div>
   )
 }
@@ -50,12 +53,18 @@ function _Tags ({ tags }: { tags: ProjectProps['tags'] }) {
   )
 }
 
-function _Info ({ name }: { name: ProjectProps['name'] }) {
+function _Info ({
+  name,
+  description
+}: {
+  name: ProjectProps['name']
+  description: ProjectProps['description']
+}) {
   return (
     <div className={styles.project_info}>
       <div>
         <h1 className='text-xl pb-1'>{name}</h1>
-        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ea, facilis quisquam quasi asperiores impedit deleniti voluptatem? Suscipit unde neque illo ut voluptas impedit saepe at doloribus non quasi, magni cupiditate?</p>
+        <p className='text-stone-200'>{description}</p>
       </div>
     </div>
   )
