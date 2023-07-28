@@ -1,19 +1,12 @@
 import styles from '../Projects.module.css'
+import ProjectProps from './project_props'
 import { motion } from 'framer-motion'
-import Image, { StaticImageData } from 'next/image'
-import flutter from '../../../../public/assets/projects/flutter.svg'
-
-export type ProjectTag = 'web' | 'app' | 'game'
-
-export interface ProjectProps {
-  name: string
-  tags: ProjectTag[]
-  image: StaticImageData
-  description: string
-}
+import Image from 'next/image'
+import { HiOutlineCodeBracketSquare } from 'react-icons/hi2'
+import { TbExternalLink, TbExternalLinkOff } from 'react-icons/tb'
 
 export default function Project ({ project }: { project: ProjectProps }) {
-  const { name, tags, image, description } = project
+  const { name, tags, image, description, links, tools } = project
   return (
     <motion.div
       layout={true}
@@ -34,7 +27,12 @@ export default function Project ({ project }: { project: ProjectProps }) {
         className={styles.project_image}
       />
       <_Tags tags={tags} />
-      <_Info name={name} description={description} />
+      <_Info
+        name={name}
+        description={description}
+        links={links}
+        tools={tools}
+      />
     </motion.div>
   )
 }
@@ -55,17 +53,78 @@ function _Tags ({ tags }: { tags: ProjectProps['tags'] }) {
 
 function _Info ({
   name,
-  description
+  description,
+  links,
+  tools
 }: {
   name: ProjectProps['name']
   description: ProjectProps['description']
+  links: ProjectProps['links']
+  tools: ProjectProps['tools']
 }) {
   return (
     <div className={styles.project_info}>
-      <div>
-        <h1 className='text-xl pb-1'>{name}</h1>
-        <p className='text-stone-200'>{description}</p>
+      <div className='w-full flex justify-between items-center pb-2'>
+        <h1 className='text-xl'>{name}</h1>
+        <_InfoLinks name={name} links={links} />
       </div>
+      <div className='w-full h-full flex flex-col justify-between items-center'>
+        <p className='text-neutral-200'>{description}</p>
+        <_InfoTools tools={tools} />
+      </div>
+    </div>
+  )
+}
+
+function _InfoLinks ({
+  name,
+  links
+}: {
+  name: ProjectProps['name']
+  links: ProjectProps['links']
+}) {
+  return (
+    <div className={styles.project_links}>
+      <a
+        href={links.code}
+        title={`${name} code`}
+        target='_blank'
+        className={styles.project_link}
+      >
+        <HiOutlineCodeBracketSquare className='w-full h-full' />
+      </a>
+
+      <a
+        href={links.deployed ?? undefined}
+        title={`${!links.deployed ? 'No ' : ''}${name} deployment`}
+        target='_blank'
+        className={
+          styles.project_link +
+          ' ' +
+          (!links.deployed ? styles.disabled_link : '')
+        }
+      >
+        {links.deployed ? (
+          <TbExternalLink className='w-full h-full' />
+        ) : (
+          <TbExternalLinkOff className='w-full h-full' />
+        )}
+      </a>
+    </div>
+  )
+}
+
+function _InfoTools ({ tools }: { tools: ProjectProps['tools'] }) {
+  return (
+    <div className={styles.project_tools}>
+      {tools.map(tool => {
+        return (
+          <div key={tool.name} className={styles.project_tool}>
+            <tool.icon className='w-full h-full' />
+            <p>{tool.name}</p>
+          </div>
+        )
+      })}
     </div>
   )
 }

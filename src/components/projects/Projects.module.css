@@ -72,7 +72,10 @@
   width: 100%;
   padding: 0 15%;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(var(--projects-min-size), 1fr));
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(var(--projects-min-size), 1fr)
+  );
   justify-content: center;
   gap: 1rem;
   grid-auto-rows: auto;
@@ -81,7 +84,9 @@
 .project {
   --border-radius: 0.75em;
   --project-info-reveal-height: 45px;
-  --project-image-height: calc(var(--projects-min-size) - var(--project-info-reveal-height));
+  --project-image-height: calc(
+    var(--projects-min-size) - var(--project-info-reveal-height)
+  );
   width: 100%;
   height: 100%;
   display: flex;
@@ -112,6 +117,7 @@
   background-color: #61616199;
   border-radius: 1rem;
   border: 1px solid #333;
+  user-select: none;
 }
 
 .project .project_info {
@@ -122,10 +128,81 @@
   position: absolute;
   top: calc(100% - var(--project-info-reveal-height));
   z-index: 2;
-  transition: top .35s ease;
+  transition: top 0.35s ease;
   word-wrap: break-word;
+  padding-bottom: var(--project-info-reveal-height);
 }
 
 .project:hover .project_info {
   top: 0;
+}
+
+.project_links {
+  padding: 0 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: -1;
+  opacity: 0;
+}
+
+.project:hover .project_links {
+  z-index: 1;
+  animation: fade_in_links 1s ease forwards;
+}
+
+@keyframes fade_in_links {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.project_links .project_link {
+  width: 28px;
+  height: 28px;
+}
+
+.project_link.disabled_link {
+  color: #aaa;
+}
+
+.project_link:not(.disabled_link) {
+  transition: all 0.25s ease;
+}
+
+.project_link:not(.disabled_link):hover {
+  color: var(--primary-color);
+  scale: 1.15;
+}
+
+.project_tools {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.project_tools .project_tool {
+  --project-tag-color: #eee;
+  border: 3px solid var(--project-tag-color);
+  color: var(--project-tag-color);
+  width: 65px;
+  height: 65px;
+  padding: 2px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 1rem;
+  font-size: 12px;
+  user-select: none;
+  transition: all 0.35s ease;
+}
+
+.project_tools .project_tool:hover {
+  --project-tag-color: #1a1a1a;
 }
