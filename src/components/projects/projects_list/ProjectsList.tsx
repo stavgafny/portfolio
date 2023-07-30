@@ -1,10 +1,11 @@
 'use client'
 
 import styles from '../Projects.module.css'
-import Project, { ProjectProps, ProjectTag } from './Project'
-import ProjectsFilter from './ProjectsFilter'
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { ProjectTag } from './project_props'
+import Project from './Project'
+import ProjectsFilter from './ProjectsFilter'
 import projectsList from './projects_list'
 
 export default function ProjectsList () {

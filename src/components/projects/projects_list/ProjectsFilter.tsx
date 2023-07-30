@@ -2,7 +2,7 @@
 
 import styles from '../Projects.module.css'
 import { useState } from 'react'
-import { ProjectTag } from './Project'
+import { ProjectTag } from './project_props';
 
 export default function ProjectsFilter ({onFilterChange}: {onFilterChange: (tag: ProjectTag | null) => void}) {
   const [filterHighlightPosition, setFilterHighlightPosition] = useState(styles.pos1);

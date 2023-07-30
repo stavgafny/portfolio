@@ -60,9 +60,11 @@ export function SkillSection ({ tagId, content }: SkillSectionProps) {
         className={styles.section_content + ' text-lg max-lg:text-base'}
         content={`<p id="${tagId}">`}
       >
-        {content.map((segment, index) =>
-          segment.length > 0 ? <p key={segment + index}>{segment}</p> : <br />
-        )}
+        {content.map((segment, index) => (
+          <div key={segment + index}>
+            {segment.length > 0 ? <p>{segment}</p> : <br />}
+          </div>
+        ))}
       </div>
     </section>
   )

@@ -39,7 +39,7 @@ export default function Chart ({ cells, footer }: ChartProps) {
         <_ChartDays initialDate={dates[0]} />
         <_ChartCells initialCells={cells} /*stateUpdater={stateUpdater} */ />
       </div>
-      <_Levels children={footer} />
+      <_Levels>{footer}</_Levels>
     </>
   )
 }
