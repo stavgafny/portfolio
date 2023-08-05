@@ -19,7 +19,6 @@ export default function AnimateOnScrollObserver ({
 
   useEffect(() => {
     const observer = _createIntersectionObserver(onScollViewdClassName, repetitive)
-
     const element = ref.current
 
     if (element) {
@@ -31,7 +30,7 @@ export default function AnimateOnScrollObserver ({
         observer.unobserve(element)
       }
     }
-  }, [])
+  }, [onScollViewdClassName, repetitive])
   return (
     <div ref={ref} className={className}>
       {children}
