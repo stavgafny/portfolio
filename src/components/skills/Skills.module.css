@@ -49,7 +49,7 @@
 }
 
 .skill_box.slideable.slide_in {
-  animation: slide_skill_box_in_animation .75s ease forwards;
+  animation: slide_skill_box_in_animation 0.75s ease forwards;
 }
 
 .skill_box.slideable:not(.slide_in) * {
@@ -80,6 +80,33 @@
   justify-content: space-between;
 }
 
+.skill_box_header .skill_box_icon {
+  width: auto;
+  height: 100%;
+  transition: scale 75ms ease;
+}
+
+.skill_box_header .skill_box_icon:hover {
+  animation: skill_box_icon_rotate 2s ease infinite;
+  scale: 1.1;
+}
+
+@keyframes skill_box_icon_rotate {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  10% {
+    transform: rotate(15deg);
+  }
+  20% {
+    transform: rotate(-15deg);
+  }
+  30% {
+    transform: rotate(0deg);
+  }
+}
+
 .skill_box_header .skill_box_title {
   padding: 0 5px;
   font-size: 28px;
@@ -98,7 +125,7 @@
   z-index: -1;
   border-radius: 10px 0px;
   animation: marker_transition 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards
-    .7s;
+    0.7s;
 }
 
 @keyframes marker_transition {

@@ -68,26 +68,27 @@
 }
 
 .projects_grid {
-  --projects-min-size: 300px;
+  --projects-min-size: 380px;
   width: 100%;
-  padding: 0 15%;
-  display: grid;
-  grid-template-columns: repeat(
-    auto-fill,
-    minmax(var(--projects-min-size), 1fr)
-  );
-  justify-content: center;
+  padding: 0 12vw;
   gap: 1rem;
-  grid-auto-rows: auto;
+  display: grid;
+  justify-content: center;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(var(--projects-min-size), max-content)
+  );
 }
 
 .project {
   --border-radius: 0.75em;
   --project-info-reveal-height: 45px;
+  --project-aspect-ratio: var(--projects-min-size) * 0.1;
   --project-image-height: calc(
-    var(--projects-min-size) - var(--project-info-reveal-height)
+    var(--projects-min-size) - var(--project-info-reveal-height) -
+      var(--project-aspect-ratio)
   );
-  width: 100%;
+  width: var(--projects-min-size);
   height: 100%;
   display: flex;
   flex-direction: column;

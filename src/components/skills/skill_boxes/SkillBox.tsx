@@ -1,18 +1,7 @@
-import styles from '../Skills.module.css'
 import AnimateOnScrollObserver from '@/components/shared/AnimateOnScrollObserver'
 import { IconType } from 'react-icons'
-
-export interface SkillBoxProps {
-  title: string
-  markerColor: string
-  icons: [IconType, IconType]
-  sections?: SkillSectionProps[]
-}
-
-export interface SkillSectionProps {
-  tagId: string
-  content: string[]
-}
+import styles from '../Skills.module.css'
+import SkillBoxProps, { SkillSectionProps } from './skill_box_props'
 
 export default function SkillBox ({
   title,
@@ -23,7 +12,7 @@ export default function SkillBox ({
   const IconWrapper = ({ Icon }: { Icon: IconType }) => {
     return (
       <div className='w-full h-full flex justify-center items-center'>
-        {<Icon className='w-auto h-full' />}
+        {<Icon className={styles.skill_box_icon} />}
       </div>
     )
   }

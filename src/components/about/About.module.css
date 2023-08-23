@@ -1,7 +1,7 @@
 .profile_blob {
   width: 350px;
   height: 350px;
-  animation: profile_blob_animation 15s ease-in-out infinite;
+  animation: profile_blob_animation 20s ease-in-out infinite;
   transform: translateX(-100%);
   opacity: 0;
   transition: all 3.25s cubic-bezier(0.19, 1, 0.22, 1);
@@ -10,7 +10,7 @@
 .profile_blob.on_scoll_fade_in {
   transform: translateX(0%);
   opacity: 1;
-  box-shadow: 0px 4px 8px var(--primary-color);
+  box-shadow: 0px 0px 6px var(--primary-color);
 }
 
 @keyframes profile_blob_animation {

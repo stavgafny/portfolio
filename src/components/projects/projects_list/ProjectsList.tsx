@@ -19,13 +19,13 @@ export default function ProjectsList () {
   return (
     <div className={styles.projects_list}>
       <ProjectsFilter onFilterChange={setProjectsFilter} />
-      <motion.div layout={true} className={styles.projects_grid}>
+      <div className={styles.projects_grid}>
         <AnimatePresence>
           {filteredProjects.map(project => {
             return <Project key={project.name} project={project} />
           })}
         </AnimatePresence>
-      </motion.div>
+      </div>
     </div>
   )
 }
