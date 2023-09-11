@@ -45,8 +45,8 @@ export default function Home () {
           </div>
         </div>
       </div>
-      <div className={styles.scroller} title='Down we go'>
-        <ScrollLink href='#about'>
+      <div className={styles.scroller}>
+        <ScrollLink href='#about' title='Down we go'>
           <span></span>
         </ScrollLink>
       </div>

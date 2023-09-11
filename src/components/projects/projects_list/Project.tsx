@@ -2,6 +2,7 @@ import styles from '../Projects.module.css'
 import ProjectProps from './project_props'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
+import Link from 'next/link'
 import { HiOutlineCodeBracketSquare } from 'react-icons/hi2'
 import { TbExternalLink, TbExternalLinkOff } from 'react-icons/tb'
 
@@ -20,8 +21,7 @@ export default function Project ({ project }: { project: ProjectProps }) {
       className={styles.project}
     >
       <Image
-        priority
-        alt='image'
+        alt='project-image'
         src={image}
         quality={100}
         className={styles.project_image}
@@ -85,31 +85,31 @@ function _InfoLinks ({
 }) {
   return (
     <div className={styles.project_links}>
-      <a
+      <Link
         href={links.code}
         title={`${name} code`}
         target='_blank'
         className={styles.project_link}
       >
         <HiOutlineCodeBracketSquare className='w-full h-full' />
-      </a>
-
-      <a
-        href={links.deployed ?? undefined}
-        title={`${!links.deployed ? 'No ' : ''}${name} deployment`}
-        target='_blank'
-        className={
-          styles.project_link +
-          ' ' +
-          (!links.deployed ? styles.disabled_link : '')
-        }
-      >
-        {links.deployed ? (
+      </Link>
+      {links.deployed ? (
+        <Link
+          href={links.deployed}
+          title={`${name} deployment`}
+          target='_blank'
+          className={styles.project_link}
+        >
           <TbExternalLink className='w-full h-full' />
-        ) : (
+        </Link>
+      ) : (
+        <div
+          title={`No ${name} deployment`}
+          className={styles.project_link + ' ' + styles.disabled_link}
+        >
           <TbExternalLinkOff className='w-full h-full' />
-        )}
-      </a>
+        </div>
+      )}
     </div>
   )
 }

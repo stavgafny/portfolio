@@ -54,6 +54,7 @@ export default function Header ({ title, stars }: HeaderProps) {
           <a
             href='https://github.com/stavgafny'
             target='_blank'
+            title='Check out my Github'
             className='scale-150'
           >
             <VscGithub />

@@ -41,7 +41,7 @@
 }
 
 .projects_filter .filter_highlighter {
-  background-color: #cf5757;
+  background-color: #b74141;
   position: absolute;
   width: var(--step);
   height: 100%;
@@ -124,7 +124,7 @@
 .project .project_info {
   width: 100%;
   height: 100%;
-  background: #7d8087;
+  background: #474c57;
   padding: 10px;
   position: absolute;
   top: calc(100% - var(--project-info-reveal-height));
