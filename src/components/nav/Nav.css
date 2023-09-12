@@ -5,7 +5,7 @@ nav {
   transform: translateY(-100%);
   transform-origin: top;
   animation: slide_nav_in .8s ease forwards;
-  animation-delay: 3s;
+  animation-delay: 2s;
 }
 
 @keyframes slide_nav_in {
